@@ -1,0 +1,101 @@
+game_id,category,title,unique_mechanic,mode,stage,release
+GAME-001,Logic,Sudoku Duel,Fill a grid with constraint propagation,single,IDEA,TBD
+GAME-002,Logic,Nonogram Pixels,Deduce picture from row-column runs,single,IDEA,TBD
+GAME-003,Logic,Word Ladder,Transform one word via single-letter changes,single,IDEA,TBD
+GAME-004,Logic,Cryptogram Cipher,Substitution cipher decoding,single,IDEA,TBD
+GAME-005,Logic,Minefield Deduction,Reveal safe cells from adjacent mine counts,single,IDEA,TBD
+GAME-006,Logic,Sokoban Pusher,Push crates to target squares,single,IDEA,TBD
+GAME-007,Logic,Pipe Circuit,Rotate pipe tiles to connect source and sink,single,IDEA,TBD
+GAME-008,Logic,Lights Out,Toggle neighbors until board is dark,single,IDEA,TBD
+GAME-009,Logic,Bridge & Torch,Optimize crossing order under time limit,single,IDEA,TBD
+GAME-010,Logic,Mastermind Colors,Deduce hidden sequence using position feedback,single,IDEA,TBD
+GAME-011,Trivia,Rapid Facts,Answer timed fact questions,single,IDEA,TBD
+GAME-012,Trivia,True-False Streak,Maintain accuracy across binary claims,single,IDEA,TBD
+GAME-013,Trivia,Geo Coordinates,Identify cities from hints and map fragments,single,IDEA,TBD
+GAME-014,Trivia,Timeline Sorter,Order historical events chronologically,single,IDEA,TBD
+GAME-015,Trivia,Estimation Clash,Estimate numeric quantities and score by error,versus,IDEA,TBD
+GAME-016,Trivia,Vocabulary Sprint,Match foreign words to meanings,single,IDEA,TBD
+GAME-017,Trivia,Audio Clue Quiz,Identify a sound from short audio clips,single,IDEA,TBD
+GAME-018,Trivia,Image Crop Reveal,Guess subject as hidden image reveals progressively,single,IDEA,TBD
+GAME-019,Trivia,Riddle Chain,Solve linked riddles whose clues unlock next puzzle,single,IDEA,TBD
+GAME-020,Trivia,Knowledge Relay,Team members answer alternating themed questions,coop,IDEA,TBD
+GAME-021,Strategy,Text Chess,Turn-based chess using algebraic moves,versus,IDEA,TBD
+GAME-022,Strategy,Checkers Arena,Capture diagonally with multi-jump chains,versus,IDEA,TBD
+GAME-023,Strategy,Gomoku,Build an uninterrupted line of five stones,versus,IDEA,TBD
+GAME-024,Strategy,Connect Four,Drop discs into columns to make a line,versus,IDEA,TBD
+GAME-025,Strategy,Tic Tac Toe,Place marks and block a three-in-a-row,versus,IDEA,TBD
+GAME-026,Strategy,Battleship Hunt,Hidden-grid ship placement and coordinate attacks,versus,IDEA,TBD
+GAME-027,Strategy,Reversi,Flank and flip opposing discs,versus,IDEA,TBD
+GAME-028,Strategy,Mancala Stones,Sow stones around pits to capture,versus,IDEA,TBD
+GAME-029,Strategy,Dots and Boxes,Claim squares by drawing the final edge,versus,IDEA,TBD
+GAME-030,Strategy,Hex Connector,Connect two opposite sides of hex grid,versus,IDEA,TBD
+GAME-031,Simulation,Market Maker,Negotiate fictional resource offers and demand,single,IDEA,TBD
+GAME-032,Simulation,Silent Auction,Submit sealed bids using noncash game points,versus,IDEA,TBD
+GAME-033,Simulation,Store Tycoon,Manage inventory and price elasticity,single,IDEA,TBD
+GAME-034,Simulation,Seasonal Farm,Plan crops around seasons and weather,single,IDEA,TBD
+GAME-035,Simulation,Assembly Factory,Optimize production queues and bottlenecks,single,IDEA,TBD
+GAME-036,Simulation,Town Planner,Zone a town while balancing services,single,IDEA,TBD
+GAME-037,Simulation,Delivery Dispatcher,Route delivery vehicles under constraints,single,IDEA,TBD
+GAME-038,Simulation,Virtual Exchange,Allocate simulated assets under random markets (no payouts),single,IDEA,TBD
+GAME-039,Simulation,Contract Builder,Negotiate fictional contracts via utility tradeoffs,versus,IDEA,TBD
+GAME-040,Simulation,Crafting Guild,Combine materials into production recipes,coop,IDEA,TBD
+GAME-041,RPG,Quest Navigator,Choose branches to complete narrative quests,single,IDEA,TBD
+GAME-042,RPG,Dungeon Turns,Explore rooms and manage action points,single,IDEA,TBD
+GAME-043,RPG,Co-op Boss Raid,Coordinate party actions against staged boss attacks,coop,IDEA,TBD
+GAME-044,RPG,Creature Trainer,Train pet skills through tactical challenges,single,IDEA,TBD
+GAME-045,RPG,Monster Expedition,Discover and recruit creatures by habitat,single,IDEA,TBD
+GAME-046,RPG,Talent Duel,Build complementary skill trees for battles,versus,IDEA,TBD
+GAME-047,RPG,Roguelike Ruins,Procedural dungeon with one-run character lives,single,IDEA,TBD
+GAME-048,RPG,Guild Frontier,Coordinate territorial missions between guilds,coop,IDEA,TBD
+GAME-049,RPG,Detective Case,Collect clues to infer suspect motive and timeline,single,IDEA,TBD
+GAME-050,RPG,Wilderness Survival,Balance food shelter and route decisions,single,IDEA,TBD
+GAME-051,Social,Hidden Agent,Infer undercover player from behavior clues,party,IDEA,TBD
+GAME-052,Social,Secret Keyword,All but one player know a hidden prompt,party,IDEA,TBD
+GAME-053,Social,Prisoner Dilemma,Play repeated cooperate-or-betray rounds,versus,IDEA,TBD
+GAME-054,Social,Alliance Vote,Negotiate coalition rules and ranked votes,party,IDEA,TBD
+GAME-055,Social,Secret Role Council,Find conflicting roles via public debates,party,IDEA,TBD
+GAME-056,Social,Silent Charades,Act clues using emoji sequences,party,IDEA,TBD
+GAME-057,Social,Caption Showdown,Create short captions for a shared scene,party,IDEA,TBD
+GAME-058,Social,Chain Tale,Build story one sentence per participant,coop,IDEA,TBD
+GAME-059,Social,Digital Scavenger,Solve clue trail leading to hidden digital tokens,coop,IDEA,TBD
+GAME-060,Social,Consensus Puzzle,Reach unanimous answer under information asymmetry,coop,IDEA,TBD
+GAME-061,Arcade,Reflex Dodge,Respond to shifting hazards under turn timer,single,IDEA,TBD
+GAME-062,Arcade,Reaction Flash,React to randomized signal at the right moment,single,IDEA,TBD
+GAME-063,Arcade,Pattern Recall,Memorize and repeat expanding symbol sequences,single,IDEA,TBD
+GAME-064,Arcade,Beat Steps,Match text rhythms to an increasing beat pattern,single,IDEA,TBD
+GAME-065,Arcade,Maze Sprint,Navigate grid under move limits,single,IDEA,TBD
+GAME-066,Arcade,Typing Dash,Type an exact phrase against a short clock,single,IDEA,TBD
+GAME-067,Arcade,Asteroid Grid,Fire and dodge targets in a discrete grid,single,IDEA,TBD
+GAME-068,Arcade,Safe Step,Choose safe hidden platforms via partial hints,single,IDEA,TBD
+GAME-069,Arcade,Tower Balance,Select placements to keep center of mass stable,single,IDEA,TBD
+GAME-070,Arcade,Lock Countdown,Solve time-locked combinations with limited clues,single,IDEA,TBD
+GAME-071,Sports,Penalty Tactics,Choose kick direction versus keeper anticipation,versus,IDEA,TBD
+GAME-072,Sports,Hoops Arc,Choose launch angle and power under court physics,single,IDEA,TBD
+GAME-073,Sports,Shuttle Rally,Select stroke and court positioning each rally,versus,IDEA,TBD
+GAME-074,Sports,Turn Racing,Manage speed and cornering on turn-by-turn track,versus,IDEA,TBD
+GAME-075,Sports,Boxing Counter,Chain block dodge and punch strategies,versus,IDEA,TBD
+GAME-076,Sports,Archery Wind,Adjust aim for wind and distance,single,IDEA,TBD
+GAME-077,Sports,Billiard Angles,Estimate ball collision trajectories,single,IDEA,TBD
+GAME-078,Sports,Fishing Routes,Choose bait depth and location from fish behavior,single,IDEA,TBD
+GAME-079,Sports,Orienteering,Navigate map bearings with limited compass hints,single,IDEA,TBD
+GAME-080,Sports,Bowling Split,Select release spin and aim to clear pin formations,single,IDEA,TBD
+GAME-081,Cards,Memory Pairs,Flip positions to find matching cards,single,IDEA,TBD
+GAME-082,Cards,Trick Taker,Follow suit and win contract tricks,versus,IDEA,TBD
+GAME-083,Cards,Set Finder,Spot valid attribute trios in a layout,single,IDEA,TBD
+GAME-084,Cards,Draft Battle,Select rotating cards from shared draft pool,versus,IDEA,TBD
+GAME-085,Cards,Co-op Deckbuilder,Combine non-random card actions against threats,coop,IDEA,TBD
+GAME-086,Cards,Twenty-One Puzzle,"Reach exactly 21 using limited arithmetic cards, no wagering",single,IDEA,TBD
+GAME-087,Cards,Solitaire Columns,Sort deck stacks by sequential rules,single,IDEA,TBD
+GAME-088,Cards,Card Tower,Build stable sequences under placement limits,single,IDEA,TBD
+GAME-089,Cards,Tactical Deck Duel,Manage energy and card timings to defeat opponent,versus,IDEA,TBD
+GAME-090,Cards,Combo Cookbook,Create target recipes by matching ingredient cards,single,IDEA,TBD
+GAME-091,AI-Native,AI Questmaster,Locally generated quests with validated goals,single,IDEA,TBD
+GAME-092,AI-Native,NPC Affinity,Choose dialog to grow NPC relationships,single,IDEA,TBD
+GAME-093,AI-Native,Generated Mystery,Infer perpetrator from AI-generated clue graph,single,IDEA,TBD
+GAME-094,AI-Native,Reasoning Referee,Explain deduction and receive rule-based grading,single,IDEA,TBD
+GAME-095,AI-Native,Adaptive Word Tutor,Predict weakness and generate spelling challenges,single,IDEA,TBD
+GAME-096,AI-Native,Prompt Puzzle,Write text that satisfies structured constraint checks,single,IDEA,TBD
+GAME-097,AI-Native,Sketch Detective,Identify AI-described object from progressive hints,single,IDEA,TBD
+GAME-098,AI-Native,Narrative Labyrinth,Navigate AI-generated rooms with deterministic map,single,IDEA,TBD
+GAME-099,AI-Native,Interrogation Arena,Question NPCs whose facts remain logically consistent,single,IDEA,TBD
+GAME-100,AI-Native,Ending Architect,Create branching choices scored by narrative consistency,single,IDEA,TBD

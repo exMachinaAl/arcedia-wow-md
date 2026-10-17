@@ -1,0 +1,545 @@
+{
+  "project": "WA-WORLD Ultimate",
+  "session": "GPT-6A29EB-20261016-B20C6A4DA9",
+  "version": "0.5.0",
+  "phase": "Phase 4 — Major game pack, daily missions, achievements, and mandatory/optional QA gates",
+  "last_updated": "2026-10-17",
+  "milestones": [
+    {
+      "id": "M00",
+      "name": "Vision, PRD and game catalog",
+      "status": "DONE"
+    },
+    {
+      "id": "M01",
+      "name": "Local foundation and 3 game prototypes",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "M02",
+      "name": "Baileys connection feasibility and compliance",
+      "status": "TODO"
+    },
+    {
+      "id": "M03",
+      "name": "PostgreSQL, queues, multiplayer and first 10 games",
+      "status": "TODO"
+    },
+    {
+      "id": "M04",
+      "name": "Local AI LLM + ML + JSON pipelines",
+      "status": "TODO"
+    },
+    {
+      "id": "M05",
+      "name": "Scale games to 100 with tests + operations",
+      "status": "TODO"
+    },
+    {
+      "id": "M06",
+      "name": "Subscription, developer tools and client app",
+      "status": "TODO"
+    },
+    {
+      "id": "M01U",
+      "name": "Offline ZIP patch, safe merge, backup and rollback",
+      "status": "DONE"
+    },
+    {
+      "id": "M02LAB",
+      "name": "Baileys transport and button diagnostics (offline tested)",
+      "status": "DONE"
+    },
+    {
+      "id": "M02FIX",
+      "name": "Native button packet format and renderer diagnostics (offline checked)",
+      "status": "DONE"
+    },
+    {
+      "id": "M02UX",
+      "name": "Native button menus, daily rewards, player XP & opt-in leaderboard",
+      "status": "DONE"
+    },
+    {
+      "id": "M05QA",
+      "name": "Game Pack 01 + Offline QA Flags",
+      "status": "DONE"
+    },
+    {
+      "id": "M05LIVE",
+      "name": "v0.5 WhatsApp live smoke tests",
+      "status": "TODO"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "WAW-001",
+      "title": "Draft product vision and PRD v0.1",
+      "milestone": "M00",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-002",
+      "title": "Create 100-game candidate catalog",
+      "milestone": "M00",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-003",
+      "title": "Create reusable command router",
+      "milestone": "M01",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-004",
+      "title": "Implement persistent local user/wallet/ledger",
+      "milestone": "M01",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-005",
+      "title": "Implement three mini-games",
+      "milestone": "M01",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-006",
+      "title": "Build read-only progress dashboard",
+      "milestone": "M01",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-007",
+      "title": "Automated tests for ledger, idempotency and games",
+      "milestone": "M01",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-008",
+      "title": "Run on Windows VS Code and record findings",
+      "milestone": "M01",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-009",
+      "title": "Live Baileys QR pairing with dedicated test account",
+      "milestone": "M02",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-010",
+      "title": "Connection recovery and error handling review",
+      "milestone": "M02",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-011",
+      "title": "Review WhatsApp platform compliance and opt-in",
+      "milestone": "M02",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-012",
+      "title": "Move auth key state to secured server persistence",
+      "milestone": "M02",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-013",
+      "title": "Design PostgreSQL schema and migrations",
+      "milestone": "M03",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-014",
+      "title": "Migrate wallet to PostgreSQL transactions",
+      "milestone": "M03",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-015",
+      "title": "Durable inbox/outbox and queue workers",
+      "milestone": "M03",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-016",
+      "title": "Game session multi-user state and matchmaking",
+      "milestone": "M03",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-017",
+      "title": "Validate first ten unique game mechanics",
+      "milestone": "M03",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-018",
+      "title": "Anti-cheat rewards balancing",
+      "milestone": "M03",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-019",
+      "title": "Local LLM runtime selection and benchmarking",
+      "milestone": "M04",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-020",
+      "title": "Structured JSON schema tools + validator",
+      "milestone": "M04",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-021",
+      "title": "Machine learning model training/evaluation",
+      "milestone": "M04",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-022",
+      "title": "Inference queue with fairness caps",
+      "milestone": "M04",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-023",
+      "title": "Increment games from 10 to 100",
+      "milestone": "M05",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-024",
+      "title": "Game balancing QA and playtests",
+      "milestone": "M05",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-025",
+      "title": "Security audit, incident response and backups",
+      "milestone": "M05",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-026",
+      "title": "Moderation report and admin audit logs",
+      "milestone": "M05",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-027",
+      "title": "Design priority plans without paid feature locks",
+      "milestone": "M06",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-028",
+      "title": "Separate real payment service from V-Currency",
+      "milestone": "M06",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-029",
+      "title": "Versioned developer API + SDK sandbox",
+      "milestone": "M06",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-030",
+      "title": "Native WA-WORLD client MVP",
+      "milestone": "M06",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-031",
+      "title": "Implement offline ZIP patch manifest and SHA256 integrity",
+      "milestone": "M01U",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-032",
+      "title": "Add conflict detection and preserve locally edited files",
+      "milestone": "M01U",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-033",
+      "title": "Implement backup, automatic restore on failed apply, rollback",
+      "milestone": "M01U",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-034",
+      "title": "Generate v0.1-to-v0.2 patch ZIP and Windows installer kit",
+      "milestone": "M01U",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-035",
+      "title": "Show update history and task-level progress in local dashboard",
+      "milestone": "M01U",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-036",
+      "title": "Windows end-user validation of offline update flow",
+      "milestone": "M01U",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-037",
+      "title": "Create shareable source snapshot ZIP without GitHub or secrets",
+      "milestone": "M01U",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-038",
+      "title": "Add Baileys gateway config, QR persistence, reconnect policy",
+      "milestone": "M02LAB",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-039",
+      "title": "Normalize text and interactive WhatsApp reply types",
+      "milestone": "M02LAB",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-040",
+      "title": "Implement 3 button test modes and persistent non-PII diagnostics",
+      "milestone": "M02LAB",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-041",
+      "title": "Build offline tests for WA parsing, safety gates and action routing",
+      "milestone": "M02LAB",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-042",
+      "title": "Live Android/iPhone/Web native button render testing",
+      "milestone": "M02LAB",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-043",
+      "title": "Verify QR session reconnect, logout and restart on user test number",
+      "milestone": "M02LAB",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-044",
+      "title": "Review group and sender allowlist settings before wider beta",
+      "milestone": "M02LAB",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-045",
+      "title": "Remove viewOnce wrapper from native button payload",
+      "milestone": "M02FIX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-046",
+      "title": "Add business metadata and private chat bot stanza to relay",
+      "milestone": "M02FIX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-047",
+      "title": "Remove simulated extra button response and distinguish relay vs rendering",
+      "milestone": "M02FIX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-048",
+      "title": "Test native relay structure with mocked Baileys socket",
+      "milestone": "M02FIX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-049",
+      "title": "Live device verify native button renderer on connected WhatsApp",
+      "milestone": "M02",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-050",
+      "title": "Record Android / iOS / Web receiver results and decide transport",
+      "milestone": "M02",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-051",
+      "title": "Build native interactive Home / Games / Coin / RPS / Profile panels",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-052",
+      "title": "Connect native button clicks to game engine and rewards",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-053",
+      "title": "Implement Jakarta daily claim and consecutive day streak",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-054",
+      "title": "Create player stats XP, level and game win records",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-055",
+      "title": "Implement daily game reward cap and preserve no-topup rule",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-056",
+      "title": "Implement opt-in leaderboard with nickname privacy",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-057",
+      "title": "Extend dashboard with daily claims and XP metrics",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-058",
+      "title": "Migrate existing SQLite data without dropping users or wallets",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-059",
+      "title": "Test interactive click routing, economy limits, privacy and migration",
+      "milestone": "M02UX",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-060",
+      "title": "Live validate v0.4 WhatsApp panels and daily reward via recipient",
+      "milestone": "M02UX",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-061",
+      "title": "Build 4th game with unique mechanic and multi-player prototype",
+      "milestone": "M02UX",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-062",
+      "title": "Review daily reward abuse limits before public rollout",
+      "milestone": "M02UX",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-063",
+      "title": "13 additional unique gameplay mechanics and commands",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-064",
+      "title": "SQLite challenge sessions and timed expiry",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-065",
+      "title": "Daily mission tracking and ledger-safe claims",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-066",
+      "title": "Rule-based badge collection",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-067",
+      "title": "Native Game Packs quick-reply panels",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-068",
+      "title": "QA mandatory/optional feature manifest",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-069",
+      "title": "QA one-click offline regression runner",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-070",
+      "title": "Local QA report and dashboard display",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-071",
+      "title": "Interactive operator LIVE test recording",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-072",
+      "title": "Safe offline patch packaging from v0.4",
+      "milestone": "M05QA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-073",
+      "title": "LIVE validate v0.5 pairing",
+      "milestone": "M05LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-074",
+      "title": "LIVE validate roundtrip of .menu",
+      "milestone": "M05LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-075",
+      "title": "LIVE validate button click and wallet",
+      "milestone": "M05LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-076",
+      "title": "Optional v0.5 Game Packs rendering check",
+      "milestone": "M05LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-077",
+      "title": "Add multiplayer and moderation abuse tests",
+      "milestone": "M05LIVE",
+      "status": "TODO"
+    }
+  ],
+  "status_values": [
+    "TODO",
+    "IN_PROGRESS",
+    "DONE",
+    "BLOCKED"
+  ],
+  "notes": "User reported v0.4 functions and native buttons functioning; v0.5 tested offline. Manual mandatory LIVE checks remain pending. 16 actual playable games, 84 more game ideas pending. No AI LLM or ML yet."
+}

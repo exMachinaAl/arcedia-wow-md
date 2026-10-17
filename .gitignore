@@ -1,0 +1,11 @@
+node_modules/
+.env
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+coverage/
+.DS_Store
+.wa-world/
+updates/incoming/*.zip
+exports/

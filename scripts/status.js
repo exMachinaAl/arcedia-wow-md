@@ -1,0 +1,10 @@
+import { readFileSync } from 'node:fs';
+const tracker=JSON.parse(readFileSync(new URL('../project/tracker.json',import.meta.url),'utf-8'));
+const total=tracker.tasks.length;
+const done=tracker.tasks.filter(t=>t.status==='DONE').length;
+const doing=tracker.tasks.filter(t=>t.status==='IN_PROGRESS').length;
+console.log(`WA-WORLD ${tracker.version} | ${tracker.phase}`);
+console.log(`Tasks: ${done}/${total} DONE, ${doing} IN PROGRESS`);
+for(const m of tracker.milestones) console.log(`  ${m.id} [${m.status}] ${m.name}`);
+console.log('\nNext:');
+for(const t of tracker.tasks.filter(t=>t.status==='TODO').slice(0,5)) console.log(` - ${t.id}: ${t.title}`);

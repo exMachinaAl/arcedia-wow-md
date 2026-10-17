@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "release": "0.5.0",
+  "legend": {
+    "WAJIB": "Jika gagal/pending, tidak boleh mengklaim release terverifikasi end-to-end.",
+    "OPSIONAL": "Boleh dilewati pada pengujian awal; dicatat, bukan dianggap PASS.",
+    "AUTO": "Diuji tanpa nomor WhatsApp dengan Node.js lokal.",
+    "LIVE": "Harus dikonfirmasi oleh pemilik nomor di WhatsApp asli."
+  },
+  "checks": [
+    {"id":"AUTO_TESTS","name":"Seluruh tes otomatis Node.js", "flag":"WAJIB", "method":"AUTO", "instructions":"QA-ONE-CLICK.bat menjalankan node --test."},
+    {"id":"AUTO_DATABASE","name":"Migrasi SQLite, wallet & idempotensi", "flag":"WAJIB", "method":"AUTO", "instructions":"Termasuk tes regresi dan skenario saldo."},
+    {"id":"AUTO_GAMES","name":"16 game + sesi / kedaluwarsa / reward", "flag":"WAJIB", "method":"AUTO", "instructions":"Diverifikasi oleh tes game expansion."},
+    {"id":"AUTO_BUTTONS","name":"Allowlist native button dan routing", "flag":"WAJIB", "method":"AUTO", "instructions":"Hanya payload dan handler offline, bukan render pada WA."},
+    {"id":"AUTO_PATCH","name":"Offline updater dan rollback tersedia", "flag":"WAJIB", "method":"AUTO", "instructions":"Cek file updater dan patch. Installer sendiri diuji pada staging paket."},
+    {"id":"AUTO_CATALOG","name":"Katalog 100 game & tracker tersedia", "flag":"WAJIB", "method":"AUTO", "instructions":"Memeriksa register games dan source dokumen."},
+    {"id":"LIVE_PAIR","name":"Akun bot terhubung dan QR sukses", "flag":"WAJIB", "method":"LIVE", "instructions":"Jalankan WA-START.bat; status Connected. Jangan unggah QR atau sesi."},
+    {"id":"LIVE_ROUNDTRIP","name":"Nomor kedua mengirim .menu dan menerima balasan", "flag":"WAJIB", "method":"LIVE", "instructions":"Dari nomor uji, kirim .menu dan pastikan balasan tiba."},
+    {"id":"LIVE_BUTTON","name":"Native button tampil dan benar menjalankan fitur", "flag":"WAJIB", "method":"LIVE", "instructions":"Ketik .menu > Games > Coin; klik dan pastikan hasil serta wallet berubah sesuai hasil."},
+    {"id":"LIVE_PACKS","name":"Panel game pack tambahan", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Ketik .packs > Lucky > Dice. Periksa tampilan tombol."},
+    {"id":"LIVE_RECONNECT","name":"Restart bot dan sesi otomatis pulih", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Tutup gateway normal, buka ulang dan tes .ping."},
+    {"id":"LIVE_IOS","name":"Tombol pada iOS dan WhatsApp Web", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Coba di perangkat tambahan jika tersedia."},
+    {"id":"LIVE_GROUP","name":"Kebijakan pesan grup", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Grup default dimatikan, aktifkan hanya untuk uji terbatas yang disetujui."}
+  ]
+}

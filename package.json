@@ -1,0 +1,31 @@
+{
+  "name": "wa-world-starter",
+  "version": "0.5.0",
+  "private": true,
+  "type": "module",
+  "description": "WA-WORLD v0.5: 16 games, native interactive packs, missions, achievements, offline QA mandatory/optional flags",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "scripts": {
+    "dev": "node --experimental-sqlite --watch src/server.js",
+    "start": "node --experimental-sqlite src/server.js",
+    "chat": "node --experimental-sqlite src/cli.js",
+    "bot": "node --experimental-sqlite src/bot.js",
+    "status": "node scripts/status.js",
+    "test": "node --experimental-sqlite --test tests/*.test.js",
+    "update:preview": "node scripts/merge-updater.mjs preview",
+    "update:apply": "node scripts/merge-updater.mjs apply",
+    "update:rollback": "node scripts/merge-updater.mjs rollback",
+    "update:history": "node scripts/merge-updater.mjs history",
+    "project:export": "node scripts/export-project.mjs",
+    "wa:test": "node --experimental-sqlite --test tests/wa.test.js",
+    "qa": "node --experimental-sqlite scripts/qa-runner.mjs",
+    "qa:live": "node scripts/qa-live.mjs"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "pino": "^9.0.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
