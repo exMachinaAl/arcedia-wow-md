@@ -1,3 +1,13 @@
+## Multiplayer architecture decision (v1.1)
+Implement persistent, opt-in, server-authoritative turn matches with stable per-user access controls. First implemented board game: snakes and ladders 2-player in private WhatsApp chats. Match state and audit events live in local SQLite. Automated PNG renderer is pure JS; no claims of production scaling/ML ratings. Next: chess, Glicko and player statistics, ML matchmaking only after reliable opt-in telemetry.
+
+## v0.6.0 implementation update (scope remains broader)
+
+- 24/100 game mechanics registered and automatically tested; Game Pack 02 adds 8 puzzle commands.
+- Self-hosted Ollama LLM is a deployable **optional adapter**, not a hosted paid API, not a custom trained ML model; prompts require user opt-in. JSON schema output is validated.
+- Existing FREE/PRIORITY tiers affect AI request capacity but **do not close free access**. No payment integration or purchase of V-Currency. No real-world cash conversion.
+- WhatsApp live verification for v0.6 remains pending. User has not verified v0.5 either, so no inherited live PASS.
+
 # WA-WORLD Ultimate — Master Product Requirements (v0.1)
 
 Session reference: `GPT-6A29EB-20261016-B20C6A4DA9`  
@@ -77,3 +87,9 @@ Real subscriptions/payments, peer-to-peer currency transfer, top-ups, cashouts, 
 - Whether multiplayer groups are authorized and how user consent will work.
 - Exact subscription benefits and payment compliance.
 - Game balancing, V-Currency reward/sink policy, moderation standards.
+
+## Release 0.7 design clarification (2026-10-17)
+- Contacts: both parties must choose a nickname, invitations are pull-only via `.friend inbox`, both sides control approval; do not DM others automatically.
+- Transfer: simulation only. Both parties must enable `.pay enable` and be mutual friends. No real money, payments, deposits, cash-outs, crypto, wagers, or exchange; 50 V maximum per transfer and 100 V per sender per WIB day. Signed transfer journal is separate from positive mint-ledger so circulation and minted supply are not conflated.
+- Duel: asynchronous rock-paper-scissors friend challenge, max 10 minutes, no virtual prize/transfer/wager. Game registry stays 24/100.
+- Operator responsibilities: protect pairing secrets, keep full SQLite backup before updates, avoid sending project source with data/ to external parties; offline QA is not live compatibility proof.

@@ -8,8 +8,8 @@ function setup(draw=(min)=>min){
  const send=(text,id='qa',time=now)=>core.process({senderId:id,eventKey:`test:${id}:${++event}`,text,now:time});
  return {db,core,send};
 }
-test('Game Pack catalog includes 16 distinct playable mechanics',()=>{
- assert.equal(GAMES.length,16);assert.equal(new Set(GAMES.map(x=>x.id)).size,16);
+test('Game Pack 01 remains included in the 24-game catalog',()=>{
+ assert.ok(GAMES.length>=24);assert.equal(new Set(GAMES.map(x=>x.id)).size,GAMES.length);
 });
 test('Game Pack single-turn dice, parity and highlow are counted, capped and rewarded safely',()=>{
  const {db,send}=setup();

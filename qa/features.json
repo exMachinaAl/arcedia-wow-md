@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "0.5.0",
+  "release": "3.4.0",
   "legend": {
     "WAJIB": "Jika gagal/pending, tidak boleh mengklaim release terverifikasi end-to-end.",
     "OPSIONAL": "Boleh dilewati pada pengujian awal; dicatat, bukan dianggap PASS.",
@@ -8,18 +8,796 @@
     "LIVE": "Harus dikonfirmasi oleh pemilik nomor di WhatsApp asli."
   },
   "checks": [
-    {"id":"AUTO_TESTS","name":"Seluruh tes otomatis Node.js", "flag":"WAJIB", "method":"AUTO", "instructions":"QA-ONE-CLICK.bat menjalankan node --test."},
-    {"id":"AUTO_DATABASE","name":"Migrasi SQLite, wallet & idempotensi", "flag":"WAJIB", "method":"AUTO", "instructions":"Termasuk tes regresi dan skenario saldo."},
-    {"id":"AUTO_GAMES","name":"16 game + sesi / kedaluwarsa / reward", "flag":"WAJIB", "method":"AUTO", "instructions":"Diverifikasi oleh tes game expansion."},
-    {"id":"AUTO_BUTTONS","name":"Allowlist native button dan routing", "flag":"WAJIB", "method":"AUTO", "instructions":"Hanya payload dan handler offline, bukan render pada WA."},
-    {"id":"AUTO_PATCH","name":"Offline updater dan rollback tersedia", "flag":"WAJIB", "method":"AUTO", "instructions":"Cek file updater dan patch. Installer sendiri diuji pada staging paket."},
-    {"id":"AUTO_CATALOG","name":"Katalog 100 game & tracker tersedia", "flag":"WAJIB", "method":"AUTO", "instructions":"Memeriksa register games dan source dokumen."},
-    {"id":"LIVE_PAIR","name":"Akun bot terhubung dan QR sukses", "flag":"WAJIB", "method":"LIVE", "instructions":"Jalankan WA-START.bat; status Connected. Jangan unggah QR atau sesi."},
-    {"id":"LIVE_ROUNDTRIP","name":"Nomor kedua mengirim .menu dan menerima balasan", "flag":"WAJIB", "method":"LIVE", "instructions":"Dari nomor uji, kirim .menu dan pastikan balasan tiba."},
-    {"id":"LIVE_BUTTON","name":"Native button tampil dan benar menjalankan fitur", "flag":"WAJIB", "method":"LIVE", "instructions":"Ketik .menu > Games > Coin; klik dan pastikan hasil serta wallet berubah sesuai hasil."},
-    {"id":"LIVE_PACKS","name":"Panel game pack tambahan", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Ketik .packs > Lucky > Dice. Periksa tampilan tombol."},
-    {"id":"LIVE_RECONNECT","name":"Restart bot dan sesi otomatis pulih", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Tutup gateway normal, buka ulang dan tes .ping."},
-    {"id":"LIVE_IOS","name":"Tombol pada iOS dan WhatsApp Web", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Coba di perangkat tambahan jika tersedia."},
-    {"id":"LIVE_GROUP","name":"Kebijakan pesan grup", "flag":"OPSIONAL", "method":"LIVE", "instructions":"Grup default dimatikan, aktifkan hanya untuk uji terbatas yang disetujui."}
+    {
+      "id": "AUTO_TESTS",
+      "name": "Seluruh tes otomatis Node.js",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "QA-ONE-CLICK.bat menjalankan node --test."
+    },
+    {
+      "id": "AUTO_DATABASE",
+      "name": "Migrasi SQLite, wallet & idempotensi",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Termasuk tes regresi dan skenario saldo."
+    },
+    {
+      "id": "AUTO_GAMES",
+      "name": "50 game termasuk dua mode PvP; regresi & rewards",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Diverifikasi oleh tes game expansion."
+    },
+    {
+      "id": "AUTO_BUTTONS",
+      "name": "Allowlist native button dan routing",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Hanya payload dan handler offline, bukan render pada WA."
+    },
+    {
+      "id": "AUTO_PATCH",
+      "name": "Offline updater dan rollback tersedia",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Cek file updater dan patch. Installer sendiri diuji pada staging paket."
+    },
+    {
+      "id": "AUTO_PACK03",
+      "name": "12 game baru Pack 03 + reward aman",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "12 game sesi dua percobaan; database dan replay protection"
+    },
+    {
+      "id": "AUTO_PACK04",
+      "name": "12 game baru Pack 04, sesi dan reward aman",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Unit test game Pack 04 serta tombol allowlist."
+    },
+    {
+      "id": "AUTO_CATALOG",
+      "name": "Katalog 100 game & tracker tersedia",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Memeriksa register games dan source dokumen."
+    },
+    {
+      "id": "AUTO_LOGIC",
+      "name": "8 game puzzle baru & reward",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Test logic-pack generation, isolation, duplicate event."
+    },
+    {
+      "id": "AUTO_AI",
+      "name": "Ollama adapter, consent & batas kuota",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Menggunakan fake HTTP responses, tidak memerlukan Ollama nyata."
+    },
+    {
+      "id": "AUTO_JSON",
+      "name": "Output JSON dan validasi struktur",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Schema JSON mock; model nyata opsional."
+    },
+    {
+      "id": "AUTO_PRIVACY",
+      "name": "AI privacy & local-only endpoint",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Endpoint loopback, consent, off, no prompt storage."
+    },
+    {
+      "id": "AUTO_SOCIAL",
+      "name": "Permintaan teman, inbox, blokir",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Skenario dua akun dalam SQLite, permintaan/penolakan/kadaluarsa."
+    },
+    {
+      "id": "AUTO_TRANSFERS",
+      "name": "V-Currency transfers permanently disabled, old history preserved",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Tests v07 + world-lifecycle-v19: forbid command and SQL insert; historical records untouched."
+    },
+    {
+      "id": "AUTO_DUEL",
+      "name": "Duel PvP no-wager",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Suit dua pemain, hidden choices, expire, block dan cleanup."
+    },
+    {
+      "id": "AUTO_SOCIAL_SECURITY",
+      "name": "Privasi, rate limit sosial, grup nonaktif",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "No JID leak, private only, block & declined cooldown."
+    },
+    {
+      "id": "LIVE_PAIR",
+      "name": "Baileys connected on v1.2",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Pastikan WA-START terhubung; jangan mengirim QR atau sesi. Sebelumnya sudah dilaporkan berhasil oleh pengguna; bila tidak berubah boleh tidak diulang pada v1.4."
+    },
+    {
+      "id": "LIVE_ROUNDTRIP",
+      "name": "WhatsApp .menu response on v1.2",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Kirim .menu; balasan home tampil. Sebelumnya sudah dilaporkan berhasil oleh pengguna; bila tidak berubah boleh tidak diulang pada v1.4."
+    },
+    {
+      "id": "AUTO_DEV_API",
+      "name": "Developer key auth, scope and revoke",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Unit tests for Bearer key, scope, revocation and read-only API"
+    },
+    {
+      "id": "AUTO_DEV_RATE",
+      "name": "Developer API rate limiting",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "429 rate limit + sliding window reset test"
+    },
+    {
+      "id": "AUTO_DEV_EXT",
+      "name": "Safe JSON extensions and command execution",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Manifest whitelist, no arbitrary JS, .ext command handling"
+    },
+    {
+      "id": "AUTO_MULTIPLAYER",
+      "name": "Antrean persisten, consent, expiry dan match turn engine",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tes v11: pairing, match, move, timeout, isolation, restart"
+    },
+    {
+      "id": "AUTO_BOARD_PNG",
+      "name": "PNG board renderer and private WhatsApp image handling",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tes PNG signature, dimensions, callback, fallback"
+    },
+    {
+      "id": "AUTO_CHESS",
+      "name": "Catur: aturan dan match lifecycle",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Periksa rules/checkmate/castling/promotion/turn/timeout"
+    },
+    {
+      "id": "AUTO_CHESS_PNG",
+      "name": "Catur: renderer PNG, isolasi pemain",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Board 512px dan handler mock"
+    },
+    {
+      "id": "AUTO_CHESS_ELO",
+      "name": "Chess rating & anti replay",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Rating update only >=8 ply, no wagers"
+    },
+    {
+      "id": "AUTO_INSIGHTS",
+      "name": "Private analytics and aggregate PvP reporting",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Tests v1.3 ensure private stats and safe global output."
+    },
+    {
+      "id": "AUTO_ML",
+      "name": "ML trainer eligible data, rejection, Elo fallback",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Tests v1.3 cover minimum dataset, Brier check, model validation."
+    },
+    {
+      "id": "AUTO_CHESS_UX",
+      "name": "Chess notifications, replay, board delivery and queue UI",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "New v1.3.1 tests including notification privacy, restart, retry and dynamic panels"
+    },
+    {
+      "id": "AUTO_BLACKJACK",
+      "name": "Blackjack rules, privacy, group and renderer",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "13 new tests, no wagers or cashout"
+    },
+    {
+      "id": "AUTO_RECOVERY",
+      "name": "Gateway lease and persistence across downtime",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Runtime restart, pause TTL and outbox retry tested"
+    },
+    {
+      "id": "LIVE_BJ_DM",
+      "name": "Private multiplayer blackjack Hit/Stand and image",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Dua akun bergabung ke satu room via DM; start, kartu PNG, hit/stand, hasil akhir"
+    },
+    {
+      "id": "LIVE_RECOVERY",
+      "name": "Restart bot saat blackjack aktif",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Stop Ctrl+C, restart WA-START dan periksa .bj hand"
+    },
+    {
+      "id": "LIVE_BJ_GROUP",
+      "name": "Group invitation + private DM gameplay",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "WA_ENABLE_GROUPS=true; grup .bj group, pemain DM join kode, grup tidak boleh melihat kartu"
+    },
+    {
+      "id": "AUTO_INVENTORY",
+      "name": "Item inventory, claims, cooldown, cosmetic and replay protection",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "New inventory tests and transactions verify no duplication"
+    },
+    {
+      "id": "AUTO_ITEM_PERSIST",
+      "name": "Item ownership and equipment survive process restart",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "SQLite reopen and recovery validation"
+    },
+    {
+      "id": "LIVE_INVENTORY",
+      "name": "WhatsApp .inventory and item equip panels",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "DM .item claim starter -> .inventory -> .item claim pioneer -> .item equip pioneer-badge -> .profile"
+    },
+    {
+      "id": "LIVE_ITEM_DAILY",
+      "name": "Item daily claim in WhatsApp",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "DM .item daily twice and verify one reward per WIB day"
+    },
+    {
+      "id": "AUTO_ARCADE",
+      "name": "Gacha, 10-symbol match, risk rooms, fixed odds and no wagers",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "196+ node tests, wallet unchanged and no ability to stake or buy spins"
+    },
+    {
+      "id": "AUTO_ARCADE_RECOVERY",
+      "name": "Arcade state recovery and idempotency",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Reopen SQLite; same event cannot duplicate free draws"
+    },
+    {
+      "id": "LIVE_ARCADE",
+      "name": "Native Arcade menu & free Symbol Match",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "DM: .arcade -> tombol 10 Simbol -> tombol Putar Gratis, pastikan output 10 simbol"
+    },
+    {
+      "id": "LIVE_RISK",
+      "name": "Two consenting players Risk Room",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "A: .risk create. B: .risk join CODE. Keduanya choose. A: .risk resolve CODE. Saldo tidak berubah."
+    },
+    {
+      "id": "LIVE_GACHA",
+      "name": "Daily free gacha capsule",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "DM .gacha claim dua kali; hanya satu klaim per hari WIB."
+    },
+    {
+      "id": "AUTO_WOW_V17",
+      "name": "Legacy v1.7 income and arcade still work (backwards compatible)",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Run npm test and economy-v17.test.js; API and market are fictional."
+    },
+    {
+      "id": "LIVE_WOW_V17",
+      "name": "WOW wallet/mining/market on WhatsApp",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "DM .wow -> .wow starter -> .mine -> .wow wallet -> .market list"
+    },
+    {
+      "id": "LIVE_ARCADE_V17",
+      "name": "Arcade bound V reward and store",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "DM .slot spin -> .wow wallet -> .wow shop; no cost/stake and no real money."
+    },
+    {
+      "id": "AUTO_PVP18",
+      "name": "Mode & V achievement economy, anti-farming & replay",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --test tests/pvp-economy-v18.test.js; no transfer or wagers."
+    },
+    {
+      "id": "LIVE_PVP18",
+      "name": "Ranked vs Casual lobby and PvP panel",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Dari 2 nomor, .pvp, .chess join casual pada kedua akun, cek match lalu .pvp stats; tanpa saldo berubah."
+    },
+    {
+      "id": "LIVE_PVP18_REWARD",
+      "name": "Ranked reward on verified checkmate",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Main ranked chess hingga checkmate >=8 ply; pemenang mendapat 12 V; resign tidak mendapat reward."
+    },
+    {
+      "id": "AUTO_V_SHOP",
+      "name": "V shop debit/credit atomic and items granted exactly once",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --experimental-sqlite --test tests/world-lifecycle-v19.test.js"
+    },
+    {
+      "id": "AUTO_V_CRAFT",
+      "name": "Crafting, material extraction from mining and restart recovery",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --experimental-sqlite --test tests/world-lifecycle-v19.test.js"
+    },
+    {
+      "id": "AUTO_V_ARCADE",
+      "name": "Opt-in V arcade, public RNG odds, payout/spend caps",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --experimental-sqlite --test tests/world-lifecycle-v19.test.js"
+    },
+    {
+      "id": "AUTO_V_RISK",
+      "name": "Multiplayer virtual risk, settlement and refunds",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --experimental-sqlite --test tests/world-lifecycle-v19.test.js"
+    },
+    {
+      "id": "AUTO_NO_TRANSFER",
+      "name": "No transfers, top-ups or cash-out; database-level prohibition",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --experimental-sqlite --test tests/world-lifecycle-v19.test.js"
+    },
+    {
+      "id": "AUTO_ECON_ML",
+      "name": "Synthetic market regression backtest and safe baseline fallback",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --experimental-sqlite --test tests/world-lifecycle-v19.test.js"
+    },
+    {
+      "id": "LIVE_WOW_V_SHOP",
+      "name": "V shop buy focus-token then inventory",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": ".wow starter -> .vshop buy focus-token -> .inventory"
+    },
+    {
+      "id": "LIVE_V_ARCADE",
+      "name": "V Arcade opt-in, 10-symbol V spin (private sandbox)",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": ".arcade v enable -> .slot v (requires sufficient virtual V)"
+    },
+    {
+      "id": "LIVE_V_RISK",
+      "name": "Two-player V Risk room (private sandbox)",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": ".risk v create/join/choose/resolve"
+    },
+    {
+      "id": "AUTO_WORLD_EVENTS",
+      "name": "World event daily, proof and quest V once/day",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "npm test: tests/world-intelligence-v20.test.js"
+    },
+    {
+      "id": "AUTO_WORLD_STATS",
+      "name": "Private PNG player card and anonymous server statistics",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "npm test: player card and stats"
+    },
+    {
+      "id": "AUTO_WORLD_LEARNING",
+      "name": "Opt-in online recommender, privacy and deletion",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "npm test: .smart on, recommend, off"
+    },
+    {
+      "id": "LIVE_WORLD_EVENT",
+      "name": "WhatsApp .world event and .world quest credited once",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": ".world event -> .world quest -> .wow wallet"
+    },
+    {
+      "id": "LIVE_WORLD_CARD",
+      "name": "WhatsApp .stats card actual PNG",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": ".stats card in private chat"
+    },
+    {
+      "id": "LIVE_WORLD_SMART",
+      "name": "WhatsApp .smart on and recommendations",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": ".smart on -> .mine -> .smart recommend -> .smart off"
+    },
+    {
+      "id": "AUTO_WORLD_COMMUNITY",
+      "name": "Guild roles, V treasury, property persistence, replay protection",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "node --experimental-sqlite --test tests/world-community-v21.test.js"
+    },
+    {
+      "id": "LIVE_COMMUNITY",
+      "name": "Guild create/join and quest on WhatsApp private chat",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": ".guild create NAMA -> other player .guild join NAMA -> .guild quest"
+    },
+    {
+      "id": "LIVE_PROPERTY",
+      "name": "Property purchase and daily collect",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": ".property buy home -> .property collect home"
+    },
+    {
+      "id": "LIVE_WA_GROUP",
+      "name": "Guild interactions in group chats",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Not enabled in v2.1; private chat only"
+    },
+    {
+      "id": "AUTO_DAILY_SHOP",
+      "name": "Daily Shop price, stock, inventory, wallet integrity",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/world-market-v22.test.js and native buttons"
+    },
+    {
+      "id": "AUTO_AUCTION_ESCROW",
+      "name": "Auction disabled default, escrow/refunds, settlement safety",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/world-market-v22.test.js; auction is not public-ready"
+    },
+    {
+      "id": "LIVE_DAILY_SHOP",
+      "name": "WhatsApp V purchase from Daily Shop",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": ".dailyshop -> .dailyshop buy SKU -> .wow wallet -> .inventory"
+    },
+    {
+      "id": "LIVE_AUCTION",
+      "name": "Auction validation if/when feature is enabled after review",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Feature disabled by default; do not publicly enable until compliance and abuse review"
+    },
+    {
+      "id": "AUTO_ADAPTIVE_SEASON",
+      "name": "7-day season reward activity, replay, midnight rotation",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/world-adaptive-v23.test.js"
+    },
+    {
+      "id": "AUTO_GUILD_SUPPLY",
+      "name": "Guild treasury, role checks, once-day claim and persistence",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/world-adaptive-v23.test.js"
+    },
+    {
+      "id": "AUTO_AUCTION_RECOVERY",
+      "name": "Auction sweep on downtime, escrow idempotency, risk flags",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/world-adaptive-v23.test.js"
+    },
+    {
+      "id": "LIVE_SEASON",
+      "name": "Season progress and quest reward on WhatsApp",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": ".season -> mine or world quest -> .season claim -> .wow wallet"
+    },
+    {
+      "id": "LIVE_GUILD_SUPPLY",
+      "name": "Guild supply treasury debit and daily material claim",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": ".guild donate 50 -> .guildshop buy copper -> .guildshop claim"
+    },
+    {
+      "id": "LIVE_AUCTION_RECOVERY",
+      "name": "Auction settlement on WhatsApp after restart",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Auction locked by default, require review before enabling"
+    },
+    {
+      "id": "AUTO_GROUP_SOCIAL",
+      "name": "Guild group auth, privacy, routing & double-run",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/world-social-v24.test.js: verified group admins and guild membership"
+    },
+    {
+      "id": "AUTO_WORLD_PULSE",
+      "name": "Closed-day world activity pulse and group rally bonus",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "world pulse uses prior closed day and only guild XP rewards"
+    },
+    {
+      "id": "AUTO_REPUTATION",
+      "name": "Activity-based reputation and persistent group state",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "reputation on recorded activities; SQLite reopen"
+    },
+    {
+      "id": "LIVE_GUILD_GROUP",
+      "name": "WhatsApp group owner+admin link, two quests, rally",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "WA_ENABLE_GROUPS=true; .guildgroup link as guild Owner/admin; member quest x2 and rally"
+    },
+    {
+      "id": "LIVE_WORLD_CARD",
+      "name": "Reputation and player card PNG",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": ".reputation and .stats card in private WhatsApp"
+    },
+    {
+      "id": "AUTO_ADMIN_SETTINGS",
+      "name": "Admin allowlist, commands, audit, and V grant",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Run tests/admin-settings-v241.test.js"
+    },
+    {
+      "id": "AUTO_SAFE_TRANSFER",
+      "name": "Transfer gate, caps, and rollback persistence",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Run tests/admin-settings-v241.test.js"
+    },
+    {
+      "id": "LIVE_ADMIN_DM",
+      "name": "Admin .whoami, show, grant and wallet",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Create WOW_ADMIN_IDS on server, then DM .admin show and .admin grant me 100; confirm wallet."
+    },
+    {
+      "id": "AUTO_CHAT_IDENTITY",
+      "name": "WOW chat admin, user consent, equipment and group policy",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/wow-chat-v30.test.js: explicit opt-in, trusted admin"
+    },
+    {
+      "id": "AUTO_CHAT_QUEUE",
+      "name": "Bounded chat queue, restart ambiguity and no unverified delete",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "v3 stage1 + v3.1 tests: duplicate guard, no auto resend, replace ack fail-closed"
+    },
+    {
+      "id": "LIVE_CHAT_MIRROR",
+      "name": "Real WA opt-in decorated mirror in one controlled group",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Admin .admin chat global on; WA_ENABLE_GROUPS=true; group .wowchat enable/mode mirror; player DM .chatstyle on; send normal group text, confirm mirror and original unchanged"
+    },
+    {
+      "id": "LIVE_CHAT_BACKPRESSURE",
+      "name": "Group burst and delivery behavior",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Controlled test only; do not run spam/bulk flood on WhatsApp"
+    },
+    {
+      "id": "AUTO_SAFE_REPLACE",
+      "name": "SAFE REPLACE staged permissions and ACK gated delete",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/wow-chat-v31.test.js tests permission, ACK, database migration, opt-out, rollback consistency"
+    },
+    {
+      "id": "LIVE_CHAT_REPLACE",
+      "name": "Grup test: actual delivery receipt + moderator delete",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Enable only after Mirror live PASS. On private test group admin+player consent, verify decorated message delivered, only then source deleted. No ACK -> source retained."
+    },
+    {
+      "id": "LIVE_CHAT_REPLACE_FAILSAFE",
+      "name": "Group bot-admin downgrade and disconnect",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "If bot no longer admin, source must remain. Avoid testing by spamming WhatsApp."
+    },
+    {
+      "id": "AUTO_CHAT_PRESETS",
+      "name": "v3.2 owned cosmetic presets and persistent stats",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/wow-chat-v32.test.js"
+    },
+    {
+      "id": "AUTO_GROUP_BUTTON_LAB",
+      "name": "v3.2 admin-only group probe with text fallback",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/wow-chat-v32.test.js"
+    },
+    {
+      "id": "LIVE_GROUP_BUTTONS",
+      "name": "P0 group interactive buttons appear on real mobile clients",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Group admin enable probe, try .groupbuttons probe and selector; member reports shown/hidden/clicked; source repo comparison pending"
+    },
+    {
+      "id": "LIVE_CHAT_PRESETS",
+      "name": "v3.2 group message with selected owned-equipment preset",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Pemain .chatstyle preset save/use; DM preview, group mirror test"
+    },
+    {
+      "id": "AUTO_COMMON_MEMBER",
+      "name": "Common-player opt-in, nonadmin allowlist and LID resolution",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "tests/wow-chat-v321.test.js tests routing, mention and fallback."
+    },
+    {
+      "id": "LIVE_COMMON_MEMBER",
+      "name": "Non-admin member DM opt-in and group Mirror",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Two independent phones: member .chatstyle on by DM, admin group sets mirror; member sends one plain message and sees bot identity."
+    },
+    {
+      "id": "LIVE_GROUP_BUTTON_MIXED",
+      "name": "Mixed native-flow group buttons actually visible/clickable",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Admin grup kirim .groupbuttons mixed. Verifikasi pada ponsel common player: tombol terlihat, selector memiliki 8 pilihan, pilihan dapat ditekan. Kirim .groupbuttons report shown/hidden/clicked. Jangan klaim PASS otomatis."
+    },
+    {
+      "id": "AUTO_GROUP_ROUTING",
+      "name": "Group selector routes to real command and nested menu",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Unit tests for nested select, allowed public actions, and DM redirects."
+    },
+    {
+      "id": "AUTO_GROUP_RECEIPTS",
+      "name": "Exact group delivery receipts and verified bot admin before revoke",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Baileys receipt adapter and safe delete gates simulated."
+    },
+    {
+      "id": "LIVE_GROUP_V324_MENU",
+      "name": "Group selector executes real menu actions",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Common player clicks Permainan, Lainnya, World Pulse; verify different outputs."
+    },
+    {
+      "id": "LIVE_GROUP_V324_DELETE",
+      "name": "Real Replace/Delete WhatsApp",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "Pending: observe actual deleted message on admin and common player devices; do not claim PASS from offline QA."
+    },
+    {
+      "id": "AUTO_V330_DM",
+      "name": "Auto V330 Dm",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Mixed DM selector exposes >3 choices, routes safe allowlisted commands, with text fallback."
+    },
+    {
+      "id": "AUTO_V330_BLACKJACK",
+      "name": "Auto V330 Blackjack",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Private hand PNG and Blackjack controls for lobby, start, and hit/stand; notifications contain no group private cards."
+    },
+    {
+      "id": "AUTO_V330_REVOKE",
+      "name": "Auto V330 Revoke",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Persist original group message key and safely downgrade decoration if delete permission changes."
+    },
+    {
+      "id": "LIVE_V330_DM",
+      "name": "Live V330 Dm",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "Common player DM .menu -> selector opens a real feature, then .bj create -> Start -> PNG hand -> Hit/Stand with taps."
+    },
+    {
+      "id": "LIVE_V330_COMMON_DELETE",
+      "name": "Live V330 Common Delete",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "User-reported common player group revoke currently FAIL in v3.2.4; test only opt-in small group. Until verified, use Mirror."
+    },
+    {
+      "id": "AUTO_V340_HUBS",
+      "name": "Interactive private hubs route real commands",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "Mixed selector maps to static server-side commands; direct actions validated."
+    },
+    {
+      "id": "AUTO_V340_SIGNATURES",
+      "name": "Bound cosmetic signatures debit V atomically",
+      "flag": "WAJIB",
+      "method": "AUTO",
+      "instructions": "No negative balance, no second debit, persistent after database restart."
+    },
+    {
+      "id": "LIVE_V340_HUBS",
+      "name": "Private DM hub and blackjack navigation live",
+      "flag": "WAJIB",
+      "method": "LIVE",
+      "instructions": "User DM .menu → World/Games hubs → click commands and visually confirm result."
+    },
+    {
+      "id": "LIVE_V340_SIGNATURE",
+      "name": "Cosmetic signature real group decoration",
+      "flag": "OPSIONAL",
+      "method": "LIVE",
+      "instructions": "User buys account-bound signature with V and sends group mirror to confirm."
+    }
   ]
 }

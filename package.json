@@ -1,9 +1,9 @@
 {
   "name": "wa-world-starter",
-  "version": "0.5.0",
+  "version": "3.4.0",
   "private": true,
   "type": "module",
-  "description": "WA-WORLD v0.5: 16 games, native interactive packs, missions, achievements, offline QA mandatory/optional flags",
+  "description": "WOW 3.4.0 interactive hub navigation and V chat signatures",
   "engines": {
     "node": ">=22.16.0"
   },
@@ -21,7 +21,9 @@
     "project:export": "node scripts/export-project.mjs",
     "wa:test": "node --experimental-sqlite --test tests/wa.test.js",
     "qa": "node --experimental-sqlite scripts/qa-runner.mjs",
-    "qa:live": "node scripts/qa-live.mjs"
+    "qa:live": "node scripts/qa-live.mjs",
+    "dev:keys": "node scripts/dev-keys.mjs",
+    "ml:train": "node --experimental-sqlite scripts/train-matchmaking.mjs"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.9",

@@ -35,7 +35,7 @@ export function parseIncoming(message) {
     return mapped ? {text:mapped,source:'button-reply',buttonId:id} : null;
   }
   const raw=m.conversation ?? m.extendedTextMessage?.text ?? m.imageMessage?.caption ?? '';
-  if(typeof raw!=='string' || raw.length>300) return null;
+  if(typeof raw!=='string' || raw.length>700) return null; // AI can use up to 500 prompt chars; core still validates game commands
   const text=raw.trim();
   return text.startsWith('.') ? {text,source:'text',buttonId:null} : null;
 }

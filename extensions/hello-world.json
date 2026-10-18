@@ -1,0 +1,10 @@
+{
+  "id": "hello-world",
+  "name": "Hello World",
+  "description": "Contoh plugin JSON aman; hanya respons statis, tanpa JavaScript.",
+  "enabled": true,
+  "commands": [
+    {"command": "hello", "response": "Halo dari ekstensi WA-WORLD! 🌍"},
+    {"command": "about", "response": "Plugin deklaratif berjalan tanpa eksekusi kode pengguna."}
+  ]
+}

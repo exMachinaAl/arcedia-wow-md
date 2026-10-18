@@ -1,0 +1,8 @@
+tambahkan konsep pelelangan dan shop harian, item ini akan menjadi fitur dari mekanik grup juga
+
+
+V2.*
+mekanik baru, bila bot di grup, sy ingin ada mode untuk bot kirim wa, dengan emblem atau decoration chat, ini guna untuk item khusus atau kek pamer dari hasil wow ini, jadi player kirim pesan ke grup, bot deteksi equipment beserta config player, lalu reply atau ulang chat si pengirim dengan dekorasi dan atau komponen eksklusif atau func, dan hapus chat dari player, harus pakek konsep yg membuat chat per orang di grup, meski bomb chat atau banyak chat, bot tidak akan kewalahan, dan identifier agar meski bot yg kirim, kita tahu siapa yg kirim, konsep tag juga bagus, intinya agar mekanik wow berjalan dengan rata, bisa juga admin disable per player, tapi mekanik ini akan sepenuhnya di control admin bot atau admin grup (beda pengaturan lanjutan)
+
+V stable UI
+perbaiki atau upgrade konsep bot chat dan ui dari private chat dan grup chat, agar lebih menarik, coba gali fungsi baileys, semisal ada button uniq atau file send uniq, atau intinya, awal buka menu biar kelihatan menarik, dan config per player / akun, anda bisa preview pakek ascii dulu sebelum koding penuh, atau intinya lihatkan dulu ide anda, nanti sy konfirmasi, terlebih banyak mekanisme game, memerlukan banyak button, akan tetapi yg muncul cuma 3 atau malah yg g penting yg muncul, sy tertarik dengan konsep all button, missal join room meski pakek kode, bot akan analisis room yg ada dulu berdasarkan terbaru atau terbanyak slot, lalu setelah show list sebanyak, missal maks 4, maka button ke 5 adalah tombol next dan atau Kembali ke beranda, intinya full button, meski nanti masih ada konsep prefix func chat

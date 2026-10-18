@@ -9,3 +9,5 @@ coverage/
 .wa-world/
 updates/incoming/*.zip
 exports/
+.backup
+.backup/

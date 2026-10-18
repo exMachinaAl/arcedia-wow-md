@@ -1,9 +1,9 @@
 {
   "project": "WA-WORLD Ultimate",
   "session": "GPT-6A29EB-20261016-B20C6A4DA9",
-  "version": "0.5.0",
-  "phase": "Phase 4 — Major game pack, daily missions, achievements, and mandatory/optional QA gates",
-  "last_updated": "2026-10-17",
+  "version": "3.4.0",
+  "phase": "WOW v3.4 Interactive World Hub and Chat Cosmetic V Economy",
+  "last_updated": "2026-10-19",
   "milestones": [
     {
       "id": "M00",
@@ -69,6 +69,181 @@
       "id": "M05LIVE",
       "name": "v0.5 WhatsApp live smoke tests",
       "status": "TODO"
+    },
+    {
+      "id": "M06AI",
+      "name": "Self-hosted local AI consent, throttling, structured JSON adapter",
+      "status": "DONE"
+    },
+    {
+      "id": "M06GAME",
+      "name": "Game Pack 02: 8 playable logic & number puzzles",
+      "status": "DONE"
+    },
+    {
+      "id": "M06LIVE",
+      "name": "v0.6 mandatory WhatsApp smoke tests (v0.5 untested)",
+      "status": "TODO"
+    },
+    {
+      "id": "M07SOC",
+      "name": "Consent-based social hub, private friend system, virtual transfers, duel PvP",
+      "status": "DONE"
+    },
+    {
+      "id": "M07LIVE",
+      "name": "Release 0.7 live WhatsApp smoke tests",
+      "status": "TODO"
+    },
+    {
+      "id": "M08",
+      "name": "One-click 0.5/0.6/0.7 -> 0.8 safe offline installer",
+      "status": "DONE"
+    },
+    {
+      "id": "M08HOTFIX",
+      "name": "Bootstrap-safe merge updates with verified backup of installer versions",
+      "status": "DONE"
+    },
+    {
+      "id": "M09PACK",
+      "name": "Explorer Game Pack 04 and multi-version direct installer",
+      "status": "DONE"
+    },
+    {
+      "id": "M10DEV",
+      "name": "Developer API key manager + scoped read-only endpoints + JSON extensions",
+      "status": "DONE"
+    },
+    {
+      "id": "M10LIVE",
+      "name": "v1.0.0 WhatsApp live smoke tests",
+      "status": "TODO"
+    },
+    {
+      "id": "M11MULTI",
+      "name": "Opt-in persistent 2-player queue, board renderer, turn engine and match audit",
+      "status": "DONE"
+    },
+    {
+      "id": "M11LIVE",
+      "name": "v1.1 real WhatsApp multiplayer and PNG render validation",
+      "status": "TODO"
+    },
+    {
+      "id": "M12CHESS",
+      "name": "Chess.js ranked matches and intelligent matchmaking ML",
+      "status": "TODO"
+    },
+    {
+      "id": "M12CHESSBETA",
+      "name": "Chess PvP engine, basic ELO ranked, visual boards, queue",
+      "status": "DONE"
+    },
+    {
+      "id": "M12CHESSLIVE",
+      "name": "Chess WhatsApp device verification and comprehensive rules compliance",
+      "status": "TODO"
+    },
+    {
+      "id": "M13INSIGHT",
+      "name": "Persistent PvP analytics and calibrated chess model with Elo fallback",
+      "status": "DONE"
+    },
+    {
+      "id": "M131CHESSUX",
+      "name": "Chess realtime notification outbox and navigational UX",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "M14BJ",
+      "name": "Blackjack multiplayer cards, DM privacy, group lobby",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "M14UPTIME",
+      "name": "Upgrade-safe shutdown and recovery",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "M15ITEMS",
+      "name": "Inventory item stacks, cosmetics, earning, consumption and audit",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "M16ARCADE",
+      "name": "Free arcade, cosmetic capsule, 10-symbol matching and risk rooms",
+      "status": "DONE"
+    },
+    {
+      "id": "M17WOW",
+      "name": "World of WA virtual life economy",
+      "status": "DONE"
+    },
+    {
+      "id": "M18PVP",
+      "name": "PvP matched modes, no-wager earned V, matchmaking stats and QA",
+      "status": "DONE"
+    },
+    {
+      "id": "M19LIFE",
+      "name": "World Lifecycle & strictly non-transferable V Economy",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "M20WORLD",
+      "name": "Persistent world events, privacy-safe stats and opt-in online learning",
+      "status": "DONE"
+    },
+    {
+      "id": "M21GUILD",
+      "name": "Guild & Property Universe: role permissions, community progression, guild treasury, private property and QA",
+      "status": "DONE"
+    },
+    {
+      "id": "M22",
+      "name": "WOW daily shop and auction escrow engine (auction gated)",
+      "status": "DONE"
+    },
+    {
+      "id": "M23",
+      "name": "Adaptive seasons, guild supplies, auction recovery and anti-collusion rules",
+      "status": "DONE"
+    },
+    {
+      "id": "M24SOC",
+      "name": "World social: verified WA groups, guild rally, server pulse and reputation",
+      "status": "DONE"
+    },
+    {
+      "id": "M30CHAT",
+      "name": "V3 group chat identity and reliable decoration pipeline",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "V322_GROUP_BUTTON_REFERENCE",
+      "name": "Mixed quick-reply and eight-row selector based on XLICON code comparison; offline complete, live pending",
+      "status": "DONE"
+    },
+    {
+      "id": "V322_GROUP_BUTTON_LIVE",
+      "name": "Confirm buttons and selector are visible in actual group WA clients",
+      "status": "TODO"
+    },
+    {
+      "id": "V324_OFFLINE",
+      "name": "Stabilize group selector routing, receipts, and installer rollback",
+      "status": "DONE"
+    },
+    {
+      "id": "V324_LIVE",
+      "name": "Confirm menu actions and actual delete from common player group live",
+      "status": "TODO"
+    },
+    {
+      "id": "V330_INTERACTIVE",
+      "name": "Stable private DM UX and exact group revoke-key diagnostics",
+      "status": "DONE"
     }
   ],
   "tasks": [
@@ -533,6 +708,1565 @@
       "title": "Add multiplayer and moderation abuse tests",
       "milestone": "M05LIVE",
       "status": "TODO"
+    },
+    {
+      "id": "WAW-078",
+      "title": "Game Pack 02: eight new distinct puzzle commands",
+      "milestone": "M06GAME",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-079",
+      "title": "Native buttons packs2, numbers, logic",
+      "milestone": "M06GAME",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-080",
+      "title": "QA tests for puzzle sessions, payout, timeout",
+      "milestone": "M06GAME",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-081",
+      "title": "Ollama local-only inference adapter",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-082",
+      "title": "Explicit per-user AI consent and opt-out",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-083",
+      "title": "Text .ai ask command and JSON .ai json schema",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-084",
+      "title": "Free and PRIORITY usage rate limits (no payment)",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-085",
+      "title": "No prompts stored, per-event idempotency and reply cache",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-086",
+      "title": "AI offline mock integration tests",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-087",
+      "title": "QA reports version-scoped for v0.6",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-088",
+      "title": "Installer 0.5 → 0.6 safe merge and rollback testing",
+      "milestone": "M06AI",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-089",
+      "title": "LIVE verify 0.6 WhatsApp QR/reconnect",
+      "milestone": "M06LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-090",
+      "title": "LIVE verify 0.6 command menu roundtrip",
+      "milestone": "M06LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-091",
+      "title": "LIVE verify 0.6 native button to game",
+      "milestone": "M06LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-092",
+      "title": "Optional live Ollama inference and JSON",
+      "milestone": "M06LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-093",
+      "title": "Optional game packs 2 UI validation",
+      "milestone": "M06LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-094",
+      "title": "Actual ML personalization model",
+      "milestone": "M06LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-095",
+      "title": "SQLite social schema: contacts, friend requests and blocks",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-096",
+      "title": "Nickname friend request / accept / decline / remove",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-097",
+      "title": "Opt-in transfer toggle + friend-only access",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-098",
+      "title": "Atomic double-entry transfer journal and wallet debit",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-099",
+      "title": "Transfer 50 V/tx and 100 V/day limits",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-100",
+      "title": "PvP asynchronous suit duel with hidden choices",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-101",
+      "title": "Duel expiry, owner validation, cancellation, no wagers",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-102",
+      "title": "Native Social / Friends / Duel / Transfer panels",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-103",
+      "title": "Private-only social commands and user block guards",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-104",
+      "title": "Offline QA regressions and new social tests",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-105",
+      "title": "v0.6 to v0.7 ZIP merge + rollback validated",
+      "milestone": "M07SOC",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-106",
+      "title": "LIVE QR pairing on v0.7",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-107",
+      "title": "LIVE command roundtrip v0.7",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-108",
+      "title": "LIVE native Social panel and friendship acceptance",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-109",
+      "title": "Optional LIVE two-player duel",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-110",
+      "title": "Optional LIVE V transfer",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-111",
+      "title": "Production-grade abuse detection + durable outbox",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-112",
+      "title": "Mod-only user report and sanctions workflow",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-113",
+      "title": "PostgreSQL migrate and concurrent message workers",
+      "milestone": "M07LIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-114",
+      "title": "12 new puzzle/word mini games in 3rd pack",
+      "milestone": "M08",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-115",
+      "title": "Add Pack 03 interactive WhatsApp menus",
+      "milestone": "M08",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-116",
+      "title": "Avoid hard-coded game-count tests; preserve regression",
+      "milestone": "M08",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-117",
+      "title": "Single BAT auto detect/admin safe/Enter confirmation",
+      "milestone": "M08",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-118",
+      "title": "Direct rescue upgrade 0.5/0.6/0.7 to 0.8",
+      "milestone": "M08",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-119",
+      "title": "Release-scoped QA and offline regression 80 tests",
+      "milestone": "M08",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-120",
+      "title": "Real WA live Pack03 verification",
+      "milestone": "M08",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-121",
+      "title": "Official platform alternative technical validation",
+      "milestone": "M08",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-122",
+      "title": "Local LLM real integration test",
+      "milestone": "M08",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-123",
+      "title": "100-game unique mechanics target",
+      "milestone": "M08",
+      "status": "TODO"
+    },
+    {
+      "id": "UPD081",
+      "title": "Managed updater bootstrap repair: backup, preview, conflict guard, rollback",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "PACK09_01",
+      "title": "Pack 04 — Prime Factors",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_02",
+      "title": "Pack 04 — Median",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_03",
+      "title": "Pack 04 — Mode",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_04",
+      "title": "Pack 04 — Manhattan Distance",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_05",
+      "title": "Pack 04 — Rectangle Perimeter",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_06",
+      "title": "Pack 04 — Triangle Area",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_07",
+      "title": "Pack 04 — Ball Probability",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_08",
+      "title": "Pack 04 — UTC to WIB",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_09",
+      "title": "Pack 04 — Divisibility",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_10",
+      "title": "Pack 04 — Caesar Cipher",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_11",
+      "title": "Pack 04 — A1Z26",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "PACK09_12",
+      "title": "Pack 04 — Set Union",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "UPD09",
+      "title": "Direct OneClick installer compatibility and rollback tests v0.5–v0.8.1",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "DEV10_AUTH",
+      "title": "API key hashes, scopes and revocation",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "DEV10_API",
+      "title": "Read-only developer API and aggregate-only metrics",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "DEV10_RATE",
+      "title": "Developer API process-local rate limiting",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "DEV10_EXT",
+      "title": "Validated declarative JSON extension command routing",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "DEV10_DOCS",
+      "title": "Developer API documentation and key manager",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "DEV10_UPD",
+      "title": "Direct OneClick compatibility patch v0.5 to v0.9",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "T11-01",
+      "title": "Persistent match queue and consent-based pairing",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "T11-02",
+      "title": "Two-player accept/expire and sequential turns",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "T11-03",
+      "title": "Snake & ladders rules, player state and event history",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "T11-04",
+      "title": "Raster PNG board generator and WhatsApp image sending",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "T11-05",
+      "title": "Private-only button hub and commands",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "T11-06",
+      "title": "Matchmaking offline test suite and release QA gates",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "T11-07",
+      "title": "Live WhatsApp matchmaking & board test",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "T11-08",
+      "title": "Chess rules + image board",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "T11-09",
+      "title": "ML match skill prediction / rating and anti-cheat",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WAW-1.2-01",
+      "title": "Chess rules engine and test coverage",
+      "milestone": "M12CHESSBETA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-1.2-02",
+      "title": "Private matchmaking and persisted chess state",
+      "milestone": "M12CHESSBETA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-1.2-03",
+      "title": "PNG visual chess board and WhatsApp image handler",
+      "milestone": "M12CHESSBETA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-1.2-04",
+      "title": "ELO ladder and opt-in leaderboard",
+      "milestone": "M12CHESSBETA",
+      "status": "DONE"
+    },
+    {
+      "id": "WAW-1.2-05",
+      "title": "Live 2-account chess validation",
+      "milestone": "M12CHESSLIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-1.2-06",
+      "title": "Exhaustive FIDE draw rules and tournament readiness",
+      "milestone": "M12CHESSLIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "WAW-1.2-07",
+      "title": "Intelligent ML matchmaking model",
+      "milestone": "M12CHESSLIVE",
+      "status": "TODO"
+    },
+    {
+      "id": "AN1301",
+      "title": "PvP analytics player/private & aggregate",
+      "milestone": "M13INSIGHT",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "AN1302",
+      "title": "Pre-match chess rating dataset and result snapshots",
+      "milestone": "M13INSIGHT",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "AN1303",
+      "title": "Offline logistic trainer and baseline comparison",
+      "milestone": "M13INSIGHT",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "AN1304",
+      "title": "Match fairness scoring when model is approved",
+      "milestone": "M13INSIGHT",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "AN1305",
+      "title": "Dashboard aggregate ML status",
+      "milestone": "M13INSIGHT",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "AN1306",
+      "title": "Unit tests and regression v1.3",
+      "milestone": "M13INSIGHT",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "AN1307",
+      "title": "WhatsApp live verification of .insights and .model",
+      "milestone": "M13INSIGHT",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-01",
+      "title": "Queue count, .chess lobby, leave and cancel controls",
+      "milestone": "M131CHESSUX",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-02",
+      "title": "Durable SQLite chess notification outbox",
+      "milestone": "M131CHESSUX",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-03",
+      "title": "Notify opponents when match found/accepted/finished",
+      "milestone": "M131CHESSUX",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-04",
+      "title": "Auto PNG board to next player on turn change",
+      "milestone": "M131CHESSUX",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-05",
+      "title": "Dynamic 3-button navigation home/arena/chess",
+      "milestone": "M131CHESSUX",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-06",
+      "title": "Regression tests and staging merge v1.3 -> v1.3.1",
+      "milestone": "M131CHESSUX",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-07",
+      "title": "LIVE: 2 accounts match/turn/resign notification validation",
+      "milestone": "M131CHESSUX",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-08",
+      "title": "Push notifications with read/delivery confirmation receipts",
+      "milestone": "M131CHESSUX",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-09",
+      "title": "One unified group/DM chess invite and lobby UX",
+      "milestone": "M131CHESSUX",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "UX131-10",
+      "title": "Match timer reminders and disconnect handling UX",
+      "milestone": "M131CHESSUX",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "BJ14-01",
+      "title": "SQLite blackjack room, seats, deck, and results",
+      "milestone": "M14BJ",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "BJ14-02",
+      "title": "Non-wagering dealer engine, hit/stand/push",
+      "milestone": "M14BJ",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "BJ14-03",
+      "title": "Private hands and group-linked lobby",
+      "milestone": "M14BJ",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "BJ14-04",
+      "title": "PNG renderer and native controls",
+      "milestone": "M14BJ",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "BJ14-05",
+      "title": "Durable blackjack notification outbox",
+      "milestone": "M14BJ",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "BJ14-06",
+      "title": "Device verification: private blackjack images & actions",
+      "milestone": "M14BJ",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "BJ14-07",
+      "title": "Optional group/LID compatibility tests",
+      "milestone": "M14BJ",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "RUN14-01",
+      "title": "Gateway single-process lease and heartbeat",
+      "milestone": "M14UPTIME",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "RUN14-02",
+      "title": "Resume match TTL after shutdown",
+      "milestone": "M14UPTIME",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "RUN14-03",
+      "title": "Drain inflight messages on SIGINT/SIGTERM",
+      "milestone": "M14UPTIME",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "RUN14-04",
+      "title": "Windows real shutdown/restart live test",
+      "milestone": "M14UPTIME",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "RUN14-05",
+      "title": "Installer stage v1.3.1 → v1.4.0 and rollback",
+      "milestone": "M14UPTIME",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "IT15-01",
+      "title": "SQLite inventory and item event journal",
+      "milestone": "M15ITEMS",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "IT15-02",
+      "title": "One-time starter pack and item daily cooldown",
+      "milestone": "M15ITEMS",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "IT15-03",
+      "title": "Item consumption and genuine XP/hint effects",
+      "milestone": "M15ITEMS",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "IT15-04",
+      "title": "Cosmetic equipment slot/profile integration",
+      "milestone": "M15ITEMS",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "IT15-05",
+      "title": "Limited free badge and milestone item rewards",
+      "milestone": "M15ITEMS",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "IT15-06",
+      "title": "Inventory privacy and native button panel",
+      "milestone": "M15ITEMS",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "IT15-07",
+      "title": "Regression tests & installer staging",
+      "milestone": "M15ITEMS",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "IT15-08",
+      "title": "Live WA inventory panel validation",
+      "milestone": "M15ITEMS",
+      "status": "TODO",
+      "priority": "P0"
+    },
+    {
+      "id": "IT15-09",
+      "title": "Item crafting and recipe system",
+      "milestone": "M15ITEMS",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "IT15-10",
+      "title": "Exclusive seasonal item collections",
+      "milestone": "M15ITEMS",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "IT15-11",
+      "title": "PvE item effect hooks and balancing",
+      "milestone": "M15ITEMS",
+      "status": "TODO",
+      "priority": "P2"
+    },
+    {
+      "id": "IT15-12",
+      "title": "Inventory telemetry and ML recommendations",
+      "milestone": "M15ITEMS",
+      "status": "TODO",
+      "priority": "P2"
+    },
+    {
+      "id": "AR16-01",
+      "title": "Non-tradable free daily capsule and transparent rarity odds",
+      "milestone": "M16ARCADE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-02",
+      "title": "10-symbol slot matching, 3-10 run-score mechanics",
+      "milestone": "M16ARCADE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-03",
+      "title": "Risk Rooms opt-in 2-8 players, published probabilities, nonredeemable scores",
+      "milestone": "M16ARCADE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-04",
+      "title": "Cryptographically secure RNG, limits and replay protection",
+      "milestone": "M16ARCADE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-05",
+      "title": "WhatsApp native menus and nested access",
+      "milestone": "M16ARCADE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-06",
+      "title": "Local offline QA regression and state persistence",
+      "milestone": "M16ARCADE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-07",
+      "title": "Live verification of Arcade UI and multiplayer",
+      "milestone": "M16ARCADE",
+      "status": "TODO",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-08",
+      "title": "Independent legal and platform policy review before public release",
+      "milestone": "M16ARCADE",
+      "status": "TODO",
+      "priority": "P0"
+    },
+    {
+      "id": "AR16-09",
+      "title": "Renderer PNG animated pointer/slot visual UX",
+      "milestone": "M16ARCADE",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "AR16-10",
+      "title": "Crafting system and seasonal cosmetic collections",
+      "milestone": "M16ARCADE",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "AR16-11",
+      "title": "ML recommendations from opt-in player stats (never odds adjustment)",
+      "milestone": "M16ARCADE",
+      "status": "TODO",
+      "priority": "P2"
+    },
+    {
+      "id": "AR16-12",
+      "title": "Cooperative lobby notifications and seasonal score ranks",
+      "milestone": "M16ARCADE",
+      "status": "TODO",
+      "priority": "P2"
+    },
+    {
+      "id": "WOW17-01",
+      "title": "WOW starter, mining and guaranteed daily virtual job",
+      "milestone": "M17WOW",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WOW17-02",
+      "title": "Fictional market quotes, portfolio, buy/sell with atomic V ledger",
+      "milestone": "M17WOW",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WOW17-03",
+      "title": "Bound Arcade V on gacha, Symbol Match and Risk Rooms",
+      "milestone": "M17WOW",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WOW17-04",
+      "title": "Fixed-price cosmetic store using bound Arcade V",
+      "milestone": "M17WOW",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WOW17-05",
+      "title": "WhatsApp native World/Market panels and commands",
+      "milestone": "M17WOW",
+      "status": "DONE",
+      "priority": "P1"
+    },
+    {
+      "id": "WOW17-06",
+      "title": "Economy regression, restart, anti-duplication and installer QA",
+      "milestone": "M17WOW",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WOW17-07",
+      "title": "Player opt-in ML economy recommender, never manipulate odds",
+      "milestone": "M17WOW",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WOW17-08",
+      "title": "Ranked/casual PvP economy rewards without player stakes",
+      "milestone": "M17WOW",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WOW17-09",
+      "title": "Economic telemetry, inflation, circuit breaker, season governance",
+      "milestone": "M17WOW",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WOW17-10",
+      "title": "Policy/legal review before public launch or transfer/market activation",
+      "milestone": "M17WOW",
+      "status": "TODO",
+      "priority": "P0"
+    },
+    {
+      "id": "PVP18-01",
+      "title": "Ranked/Casual mode preferences with match lock and isolation",
+      "milestone": "M18PVP",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "PVP18-02",
+      "title": "Chess and snakes eligible rewards (no surrender farming)",
+      "milestone": "M18PVP",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "PVP18-03",
+      "title": "PvP match history, economy audit, daily and pair caps",
+      "milestone": "M18PVP",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "PVP18-04",
+      "title": "Blackjack result tracking without random-win currency",
+      "milestone": "M18PVP",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "PVP18-05",
+      "title": "Live QA on real WhatsApp account",
+      "milestone": "M18PVP",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "PVP18-06",
+      "title": "Advanced competitive anti-collusion detection and season economy",
+      "milestone": "M18PVP",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "LIFE19-01",
+      "title": "V Shop and inventory usable-item purchases",
+      "milestone": "M19LIFE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "LIFE19-02",
+      "title": "Mining materials & cost-based crafting",
+      "milestone": "M19LIFE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "LIFE19-03",
+      "title": "Career jobs and skill progression foundation",
+      "milestone": "M19LIFE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "LIFE19-04",
+      "title": "V arcade opt-in, public odds and stake caps",
+      "milestone": "M19LIFE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "LIFE19-05",
+      "title": "V risk rooms multiplayer, refunds and audit",
+      "milestone": "M19LIFE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "LIFE19-06",
+      "title": "Permanent ban on V transfers in commands and DB",
+      "milestone": "M19LIFE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "LIFE19-07",
+      "title": "Synthetic market local ML forecast with baseline check",
+      "milestone": "M19LIFE",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "LIFE19-08",
+      "title": "Real WhatsApp new-feature live validation",
+      "milestone": "M19LIFE",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "LIFE19-09",
+      "title": "Production policy/legal review and age safeguard",
+      "milestone": "M19LIFE",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "LIFE19-10",
+      "title": "Season lifecycle & inflation adaptive balancing",
+      "milestone": "M19LIFE",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD20-01",
+      "title": "Persistent server-wide daily world events and audit commitment",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-02",
+      "title": "One quest/day grants V and prevents duplicate claims",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-03",
+      "title": "Anonymized world statistics and player stats card",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-04",
+      "title": "Generate 640x350 player-card PNG without npm dependencies",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-05",
+      "title": "Opt-in personal online preference learning and full deletion",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-06",
+      "title": "Native 3-button World Intelligence panel and DM privacy",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-07",
+      "title": "Dashboard /api/v1/world aggregate endpoint",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-08",
+      "title": "Regression and one-click patch from v1.9.0",
+      "milestone": "M20WORLD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD20-09",
+      "title": "Real WhatsApp live validation",
+      "milestone": "M20WORLD",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD20-10",
+      "title": "Guild, property, deterministic daily shop",
+      "milestone": "M20WORLD",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD20-11",
+      "title": "Auction escrow & abuse policy review",
+      "milestone": "M20WORLD",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD20-12",
+      "title": "ML offline metrics, privacy policy, exploitation review",
+      "milestone": "M20WORLD",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD21-01",
+      "title": "Guild create/join/leave/disband and 20-member capacity",
+      "milestone": "M21GUILD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD21-02",
+      "title": "Guild roles, leader handover and access permissions",
+      "milestone": "M21GUILD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD21-03",
+      "title": "Guild treasury deposit, V debit and Hall upgrade",
+      "milestone": "M21GUILD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD21-04",
+      "title": "Guild quests & leaderboard with nicknames only",
+      "milestone": "M21GUILD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD21-05",
+      "title": "Personal properties and daily bonus effects",
+      "milestone": "M21GUILD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD21-06",
+      "title": "Community stats and WhatsApp button panels",
+      "milestone": "M21GUILD",
+      "status": "DONE",
+      "priority": "P0"
+    },
+    {
+      "id": "WORLD21-07",
+      "title": "Regression and direct OneClick patch staging",
+      "milestone": "M21GUILD",
+      "status": "IN_PROGRESS",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD21-08",
+      "title": "Live guild/property WhatsApp verification",
+      "milestone": "M21GUILD",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD21-09",
+      "title": "Guild integration with WhatsApp group permissions",
+      "milestone": "M21GUILD",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "WORLD21-10",
+      "title": "Auction house, secure escrow & item-trading risk review",
+      "milestone": "M21GUILD",
+      "status": "TODO",
+      "priority": "P1"
+    },
+    {
+      "id": "V22-01",
+      "name": "Daily WIB rotating offers and persistent stock",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-02",
+      "name": "Atomic V debit/item grant, quota and stock checks",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-03",
+      "name": "Read-only shop aggregate JSON endpoint",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-04",
+      "name": "Native WhatsApp menu for shop and auction",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-05",
+      "name": "Auction material listings, 72h/10-games eligibility, limits",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-06",
+      "name": "Bid escrow, outbid refunds and fee settlement",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-07",
+      "name": "Auction disabled default and legacy transfer ban retained",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-08",
+      "name": "New tests for wallet, replay, auction persistence",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-09",
+      "name": "OneClick upgrade, rollback, data protection staging QA",
+      "status": "DONE"
+    },
+    {
+      "id": "V22-10",
+      "name": "Public policy and anti-collusion assessment of auctions",
+      "status": "TODO"
+    },
+    {
+      "id": "V22-11",
+      "name": "Background expiration/settlement scheduler with uptime recovery",
+      "status": "TODO"
+    },
+    {
+      "id": "V22-12",
+      "name": "Live WhatsApp Daily Shop smoke test",
+      "status": "TODO"
+    },
+    {
+      "id": "V22-13",
+      "name": "Auction escrow cross-user notifications and disputes",
+      "status": "TODO"
+    },
+    {
+      "id": "V22-14",
+      "name": "Seasonal collections and controlled property listing",
+      "status": "TODO"
+    },
+    {
+      "id": "V23-01",
+      "name": "Persistent 7-day season rotation and achievement progression",
+      "status": "DONE"
+    },
+    {
+      "id": "V23-02",
+      "name": "Season 15 V claim once per week from recorded gameplay",
+      "status": "DONE"
+    },
+    {
+      "id": "V23-03",
+      "name": "Guild supply shop using guild treasury and role permissions",
+      "status": "DONE"
+    },
+    {
+      "id": "V23-04",
+      "name": "Guild material collection limited to once daily per member",
+      "status": "DONE"
+    },
+    {
+      "id": "V23-05",
+      "name": "Auction expiry sweep on gateway boot and every minute",
+      "status": "DONE"
+    },
+    {
+      "id": "V23-06",
+      "name": "Rules-based repeated seller/buyer trading risk flags",
+      "status": "DONE"
+    },
+    {
+      "id": "V23-07",
+      "name": "Regression tests, protected-data patch, installer QA",
+      "status": "DONE"
+    },
+    {
+      "id": "V23-08",
+      "name": "ML anomaly model with labeled positive/negative samples",
+      "status": "TODO"
+    },
+    {
+      "id": "V23-09",
+      "name": "Auction public enablement after policy and abuse assessment",
+      "status": "TODO"
+    },
+    {
+      "id": "V23-10",
+      "name": "WhatsApp live test for season and guild supply",
+      "status": "TODO"
+    },
+    {
+      "id": "V23-11",
+      "name": "Auction escrow refunds and dispute admin console",
+      "status": "TODO"
+    },
+    {
+      "id": "V23-12",
+      "name": "Season property bonuses with performance guardrails",
+      "status": "TODO"
+    },
+    {
+      "id": "V24-01",
+      "name": "Authenticated group-guild linking: owner+verified WhatsApp administrator",
+      "title": "Authenticated group-guild linking: owner+verified WhatsApp administrator",
+      "status": "DONE",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V24-02",
+      "name": "Group quests and contribution leaderboard with opt-in identity",
+      "title": "Group quests and contribution leaderboard with opt-in identity",
+      "status": "DONE",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V24-03",
+      "name": "Daily Guild Rally cooperative guild XP based on verified participation",
+      "title": "Daily Guild Rally cooperative guild XP based on verified participation",
+      "status": "DONE",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V24-04",
+      "name": "World Pulse activity-driven guild XP bonus from prior day",
+      "title": "World Pulse activity-driven guild XP bonus from prior day",
+      "status": "DONE",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V24-05",
+      "name": "Reputation derived from recorded activity and PNG player card",
+      "title": "Reputation derived from recorded activity and PNG player card",
+      "status": "DONE",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V24-06",
+      "name": "Read-only aggregate server API and dashboard metrics",
+      "title": "Read-only aggregate server API and dashboard metrics",
+      "status": "DONE",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V24-07",
+      "name": "Offline security, idempotency, restart tests and OneClick rollback",
+      "title": "Offline security, idempotency, restart tests and OneClick rollback",
+      "status": "DONE",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V24-08",
+      "name": "Live WhatsApp group admin and guild quest verification",
+      "title": "Live WhatsApp group admin and guild quest verification",
+      "status": "TODO",
+      "milestone": "M24SOC"
+    },
+    {
+      "id": "V30-01",
+      "name": "SQLite chat state, audit, opt-in and group policy",
+      "title": "SQLite chat state, audit, opt-in and group policy",
+      "status": "DONE",
+      "milestone": "M30CHAT"
+    },
+    {
+      "id": "V30-02",
+      "name": "Equipment-decorated identity tag and mirror pipeline",
+      "title": "Equipment-decorated identity tag and mirror pipeline",
+      "status": "DONE",
+      "milestone": "M30CHAT"
+    },
+    {
+      "id": "V30-03",
+      "name": "Group admin verification and per-player block",
+      "title": "Group admin verification and per-player block",
+      "status": "DONE",
+      "milestone": "M30CHAT"
+    },
+    {
+      "id": "V30-04",
+      "name": "Anti-spam, deduplication, durable queue, crash ambiguity",
+      "title": "Anti-spam, deduplication, durable queue, crash ambiguity",
+      "status": "DONE",
+      "milestone": "M30CHAT"
+    },
+    {
+      "id": "V30-05",
+      "name": "Offline regression and OneClick installer rollback",
+      "title": "Offline regression and OneClick installer rollback",
+      "status": "DONE",
+      "milestone": "M30CHAT"
+    },
+    {
+      "id": "V30-06",
+      "name": "Real WhatsApp mirror delivery and group metadata verification",
+      "title": "Real WhatsApp mirror delivery and group metadata verification",
+      "status": "TODO",
+      "milestone": "M30CHAT"
+    },
+    {
+      "id": "V30-07",
+      "name": "Safe replace and optional source deletion after delivered proof",
+      "title": "Safe replace and optional source deletion after delivered proof",
+      "status": "TODO",
+      "milestone": "M30CHAT"
+    },
+    {
+      "id": "V31-01",
+      "name": "Replace group/player/server permissions",
+      "status": "DONE"
+    },
+    {
+      "id": "V31-02",
+      "name": "Delivery ACK-gated deletion + bot admin authorization",
+      "status": "DONE"
+    },
+    {
+      "id": "V31-03",
+      "name": "Crash-safe delete state and idempotent migration",
+      "status": "DONE"
+    },
+    {
+      "id": "V31-04",
+      "name": "OneClick installer and live QA",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "V32-PRESETS",
+      "name": "Presets chat cosmetics per owner and owned-only item checks",
+      "status": "DONE"
+    },
+    {
+      "id": "V32-STATS",
+      "name": "Chat metrics and guild identity decorations",
+      "status": "DONE"
+    },
+    {
+      "id": "V32-BUTTON-PROBE",
+      "name": "Group Button Lab quick replies/selector with opt-in admin diagnostics",
+      "status": "DONE"
+    },
+    {
+      "id": "V32-GROUP-BUTTON-FIX",
+      "name": "P0 investigate group button visibility on live devices and compare owner repository",
+      "status": "TODO"
+    },
+    {
+      "id": "V321-COMMON-CHAT",
+      "name": "P0 Group common-member chat works with admin-only bot allowlist and player DM opt-in",
+      "status": "DONE"
+    },
+    {
+      "id": "V321-LID-PN",
+      "name": "LID/phone alternative group identity mapping, mention and revoke original JID correctness",
+      "status": "DONE"
+    },
+    {
+      "id": "V321-DEFAULT",
+      "name": "Equipment optional default Explorer plus admin group rejection counters",
+      "status": "DONE"
+    },
+    {
+      "id": "V321-LIVE",
+      "name": "Live non-admin WhatsApp group test including Mirror and Replace ACK",
+      "status": "TODO"
+    },
+    {
+      "id": "V324_GROUP_ROUTING",
+      "name": "Selector actions execute actual group-safe commands and hierarchical menus",
+      "status": "DONE"
+    },
+    {
+      "id": "V324_RECEIPT",
+      "name": "Message-receipt.update group delivery ACK hook with exact message key matching",
+      "status": "DONE"
+    },
+    {
+      "id": "V324_ADMIN_DIAG",
+      "name": "Verified bot-group-admin check and concrete delete failure reasons",
+      "status": "DONE"
+    },
+    {
+      "id": "V324_DELETE_LIVE",
+      "name": "Real WhatsApp verification of group message revoke for common/admin",
+      "status": "TODO"
+    },
+    {
+      "id": "V330_DM_MIXED",
+      "name": "Reusable mixed native-flow selectors for private menus and game navigation",
+      "status": "DONE"
+    },
+    {
+      "id": "V330_BJ_CARDS",
+      "name": "Blackjack private PNG refresh and actionable Hit/Stand controls via DM",
+      "status": "DONE"
+    },
+    {
+      "id": "V330_COMMON_REVOKE_KEY",
+      "name": "Persist exact common-player message keys and preserve delete receipt gates",
+      "status": "DONE"
+    },
+    {
+      "id": "V330_COMMON_DELETE_LIVE",
+      "name": "Confirm deletion of common player original messages on real WhatsApp",
+      "status": "TODO"
+    },
+    {
+      "id": "V330_DM_INTERACTIVE_LIVE",
+      "name": "Validate private button/selector visibility and blackjack interactions in a real WhatsApp DM",
+      "status": "TODO"
+    },
+    {
+      "id": "V340_NAV_HUB",
+      "name": "Five private mixed native flow hubs with direct real commands",
+      "status": "DONE"
+    },
+    {
+      "id": "V340_SIGNATURES",
+      "name": "Account-bound cosmetic signatures purchased with V; no top-up",
+      "status": "DONE"
+    },
+    {
+      "id": "V340_SAFE_DELETE",
+      "name": "Fix common-player message deletion after verified live ACK",
+      "status": "TODO"
+    },
+    {
+      "id": "V340_HUB_LIVE",
+      "name": "Verify DM hub selectors render and route on real WA",
+      "status": "TODO"
     }
   ],
   "status_values": [
@@ -541,5 +2275,5 @@
     "DONE",
     "BLOCKED"
   ],
-  "notes": "User reported v0.4 functions and native buttons functioning; v0.5 tested offline. Manual mandatory LIVE checks remain pending. 16 actual playable games, 84 more game ideas pending. No AI LLM or ML yet."
+  "notes": "V3 stage 1: opt-in Identity+Mirror only; global/group/player consent required; no source-message deletion. Durable bounded queue with ambiguous-send no-auto-retry. Replace remains disabled pending real WhatsApp validation. No topup/cashout. Prior live feature tests remain pending.; P0: group interactive buttons invisible; prior owner repo supports multibutton/selector; validate live before universal enable.; v3.2.1 repairs non-admin group routing with allowlist, authenticated LID/PN alternative mapping, default Explorer style and group diagnostics. Safe Replace remains LIVE PENDING."
 }

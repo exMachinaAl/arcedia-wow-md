@@ -8,5 +8,6 @@ export function loadConfig() {
   const allow=(process.env.WA_ALLOWED_JIDS || '').split(',').map(s=>s.trim()).filter(Boolean);
   const allowSender=(sender,jid) => !allow.length || allow.includes(sender) || allow.includes(jid) ||
     allow.some(number => /^[0-9]{8,15}$/.test(number) && (sender.startsWith(number+'@') || jid.startsWith(number+'@')));
-  return {session,allowGroups,allowSender,allowCount:allow.length};
+  const groupButtonsEnabled=process.env.WOW_GROUP_BUTTONS_PROBE==='true';
+  return {session,allowGroups,allowSender,allowCount:allow.length,groupButtonsEnabled};
 }

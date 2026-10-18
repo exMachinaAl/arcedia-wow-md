@@ -45,8 +45,35 @@ for(const b of document.querySelectorAll('[data-filter]'))b.addEventListener('cl
     const economy=$('economy-lab');
     if(economy){economy.replaceChildren();economy.append(
       row('Daily claims: '+(d.dailyClaims??0),'DONE','Reset klaim per 00:00 WIB; hadiah 10 V + 5 XP'),
+      row('PvP Ranked: '+(d.pvp?.rankedMatches??0)+' pertandingan | '+(d.pvp?.rewards??0)+' V kompetitif','IN_PROGRESS','Reward from valid skill wins only; no stakes, cap 24V/day'),
+      row('WOW mining: '+(d.world?.mined??0)+' kegiatan | Starter: '+(d.world?.starters??0),'IN_PROGRESS','V virtual dari aktivitas, bukan top-up'),
+      row('Bursa fiktif: '+(d.world?.marketTrades??0)+' transaksi | Arcade V terikat: '+(d.world?.boundIssued??0),'IN_PROGRESS','Arcade V hanya kosmetik, tidak dapat ditransfer'),
       row('Leaderboard opt-in: '+(d.rankedPlayers??0)+' pemain','DONE','Nickname saja; nomor WhatsApp tidak ditampilkan'),
-      row('Total XP: '+(d.totalXP??0),'DONE','Data lokal; bukan metrik produksi')
+      row('🌍 World Pulse: '+(d.worldSocial?.pulse?.tier??'CALM')+' · Mining kemarin '+(d.worldSocial?.pulse?.mines??0),'DONE','Bonus guild rally berdasarkan hari sebelumnya: +'+(d.worldSocial?.pulse?.rallyBonus??0)+' XP; tidak mengubah peluang acak'),
+      row('🤝 Guild Groups: '+(d.worldSocial?.linkedGroups??0)+' · Rally: '+(d.worldSocial?.rallies??0),'IN_PROGRESS','Owner guild + admin grup terverifikasi; V transfer tetap nonaktif'),
+      row('🏰 Guild: '+(d.community?.guilds??0)+' · Anggota: '+(d.community?.members??0)+' · Kas: '+(d.community?.treasury??0)+' V','IN_PROGRESS','Kas guild adalah pengeluaran pemain untuk upgrade Hall, tidak dapat ditarik'),
+      row('🏡 Properti: '+(d.community?.properties??0)+' · Quest guild: '+(d.community?.guildQuests??0),'IN_PROGRESS','Bonus properti sekali sehari; kepemilikan account-bound'),
+      row('🌦️ World Event: '+(d.worldEvent?.title??'unknown'),'DONE','Event server-wide deterministik, historis dan auditable'),
+      row('🌍 Ekspedisi: '+(d.worldIntelligence?.completed??0)+' · Rekomendasi opt-in: '+(d.worldIntelligence?.activeRecommend??0),'DONE','Statistik agregat WOW 2.0, tanpa menampilkan nomor pemain'),
+      row('Total XP: '+(d.totalXP??0),'DONE','Data lokal; bukan metrik produksi'),
+      row('Teman mutual: '+(d.social?.friendships??0)+' · Duel aktif: '+(d.social?.activeDuels??0),'IN_PROGRESS','Fitur Social Hub, tidak menampilkan nomor telepon'),
+      row('Transfer historis (dinonaktifkan): '+(d.social?.transferCount??0)+' transaksi · '+(d.social?.transferVolume??0)+' V','IN_PROGRESS','Bukan V hasil mint: jumlah transfer antar wallet, transfer dilarang dan tanpa top-up'),
+      row('AI lokal: '+(d.ai?.successfulCalls??0)+' permintaan berhasil','IN_PROGRESS',
+          'Pemakai setuju: '+(d.ai?.consentingPlayers??0)+' · model Ollama opsional, default OFF')
+    );}
+    const multi=$('multi-lab');
+    if(multi){multi.replaceChildren();multi.append(
+      row('Antrean sukarela: '+(d.multiplayer?.waiting??0),'IN_PROGRESS','Hanya akun yang mengetik .queue join snakes'),
+      row('Pending accept: '+(d.multiplayer?.pending??0)+' · Aktif: '+(d.multiplayer?.active??0),'IN_PROGRESS','Tidak ada notifikasi DM otomatis ke lawan'),
+      row('Selesai: '+(d.multiplayer?.completed??0),'DONE','Match history tersimpan dalam SQLite; visual PNG secara on demand'),
+      row('📊 Catur selesai: '+(d.intelligence?.chessCompleted??0)+' · Ular Tangga: '+(d.intelligence?.snakesCompleted??0),'IN_PROGRESS','Statistik hasil pertandingan dalam database lokal'),
+      row('🧠 Matchmaking: '+(d.intelligence?.matchmaker?.mode??'ELO_FALLBACK'),'IN_PROGRESS','Sampel valid: '+(d.intelligence?.trainingSamples??0)+'; pelatihan ML opsional di mesin lokal')
+    );}
+    const dev=$('dev-lab');
+    if(dev){dev.replaceChildren();dev.append(
+      row('Aktif API key: '+(d.developer?.activeKeys??0),'DONE','Terproteksi Bearer + scope. Buat melalui DEV-KEYS.bat'),
+      row('Ekstensi JSON aktif: '+(d.developer?.extensions??0),'DONE','Coba .ext list atau .ext hello-world hello'),
+      row('Integritas registri: '+(d.developer?.registryHealthy?'OK':'PERIKSA'),'IN_PROGRESS','API hanya read-only; tidak ada endpoint wallet-write')
     );}
     const wa=$('wa-lab');
     if(wa){wa.replaceChildren();wa.append(

@@ -1,45 +1,50 @@
-# WA-WORLD v0.5.0 — Quality Gates, Minimal Tester Work
+# QA playbook — v0.7.0
 
-## One-click QA
+Automated: run `QA-ONE-CLICK.bat` then open `http://127.0.0.1:3000`. It labels AUTO tests WAJIB; LIVE state is PENDING_LIVE until your manual confirmation. It does not inherit PASS from any previous release.
 
-Run `QA-ONE-CLICK.bat` from the project root (Windows), or `npm run qa`.
+## Only three LIVE tests marked WAJIB
+1. `LIVE_PAIR`: WA-START connects without exposing QR/token.
+2. `LIVE_ROUNDTRIP`: from a secondary phone, `.menu` responds.
+3. `LIVE_SOCIAL`: both accounts `.nick`, then A `.friend add NickB`, B `.friend inbox` / `.friend accept NickA`. `.social` and Friends native buttons should render.
 
-- Tests execute without WhatsApp, API keys, Baileys pairing or internet connection.
-- A JSON report is written to **`data/qa-report.json`**. This is local runtime data, not part of update ZIPs.
-- Open dashboard `start-dashboard.bat` at `http://127.0.0.1:3000`: QA section lists **WAJIB**, **OPSIONAL**, **AUTO**, **LIVE**, and result **PASS**, **FAIL**, or **PENDING_LIVE**.
-- If any mandatory AUTO fails, **stop before live testing**. If all mandatory AUTO pass, the build is **ready for limited live tests** but not verified end-to-end.
+## Optional
+- `LIVE_DUEL`: friend-only no-wager duel with two accounts.
+- `LIVE_TRANSFER`: both `.pay enable`, send just 1 V and verify balances.
+- `LIVE_RECONNECT`: restart WA-START.
+- `LIVE_AI`: if Ollama installed, send `.ai ask` with consent.
 
-## Minimal LIVE smoke test — three required checks
+Use `QA-LIVE-RECORD.bat` to mark PASS/FAIL manually with non-sensitive notes, or leave pending. Don't mark rendered on device from successful relay alone.
 
-1. **LIVE_PAIR**: Start `WA-START.bat`, QR/link your dedicated WhatsApp account. Confirm terminal reports connection open. (If already paired, restart and check connection open.) Do not share QR/auth folder.
-2. **LIVE_ROUNDTRIP**: From a second consenting WhatsApp account send `.menu` and verify bot replies.
-3. **LIVE_BUTTON**: Tap `.menu → Games → Coin → Kepala`; verify reply arrives and `.wallet` can be queried. A losing game may not change balance; a winning game should follow the reward logic (daily cap may prevent credit).
+# WA-WORLD v0.6.0 — QA Flags
 
-Recommended but **optional**: `.packs → Lucky → Dice`, reconnect after restart, compatibility on WhatsApp Web/iOS, groups disabled by default.
+## Automated (already run by builder)
 
-Record your own observed results with `QA-LIVE-RECORD.bat`, entering `P` (pass), `F` (fail), or `S` (skip/pending). This updates `data/qa-live-results.json`, then regenerates QA report.
+The Node.js test suite covers game engine, SQLite idempotency, V-Currency reward cap, sessions, the WhatsApp native button routing payload, Game Pack 02, optional Ollama adapter, JSON schema, local-only AI URLs, user consent, rate limits, duplicate events, and error fallback.
 
-**IMPORTANT:** LIVE statuses are *operator-reported*, not automatically verified by the bot; existing success of v0.4 cannot be assumed to validate v0.5. No automated script will pair your device, send bulk WhatsApp messages or claim UI buttons rendered remotely.
+Run `QA-ONE-CLICK.bat` after installing the patch, or `npm run qa`. It updates local `data/qa-report.json` and the dashboard http://127.0.0.1:3000.
 
-## Flag policy
+**Offline PASS is not WhatsApp verified.** `LIVE` is recorded from human testing on your own devices only.
 
-| Flag | Meaning | Blocking? |
-|---|---|---|
-| `WAJIB AUTO` | regression, database safety, game mechanics, button mapping, patch presence | Blocks QA offline gate on failure |
-| `WAJIB LIVE` | linking, command round-trip, functional native button | Required for end-to-end approval |
-| `OPSIONAL LIVE` | secondary interactive packs, reconnect, extra clients, groups | Not required for limited beta |
+## WAJIB LIVE — just 3 quick checks
 
-QA statuses: `PASS`, `FAIL`, `PENDING_LIVE`.
+1. `LIVE_PAIR`: with bot started using `WA-START.bat`, see **connected**. If session was previously linked, no need to scan a new QR.
+2. `LIVE_ROUNDTRIP`: a second consenting account sends `.menu`, receives reply.
+3. `LIVE_BUTTON`: tap `.menu` -> Games -> Koin, then a choice. A losing play does not necessarily give a reward, so verify **response arrives** instead of expecting wallet balance to rise every time.
 
-## Game pack quick commands
+Use `QA-LIVE-RECORD.bat` and enter `P/F/S`. The 0.6 report stores your reports in `data/qa-live-results-0.6.0.json`; existing 0.5 reports cannot mark this version as passed.
 
-- `.menu`, `.games`, `.packs` (native panels), `.pack lucky`, `.pack brain`, `.pack word`.
-- New single-turn: `.dice 4`, `.parity genap`, `.highlow naik`.
-- Start then answer: `.math start`, `.trivia start`, `.scramble start`, `.pattern start`, `.memory start`, `.cipher start`, `.emoji start`, `.riddle start`, `.hangman start`, `.chain start`.
-- `.missions`, `.mission claim play3`, `.mission claim win2`, `.mission claim daily`, `.badges`.
+## OPSIONAL LIVE
 
-## Security and data retention
+- `.packs` → Next → Numbers → Biner; `.packs2` may not render consistently on all clients.
+- `.ai help`, `.ai consent`, `.ai ask`, `.ai json`, `.ai off`: only when local Ollama has been installed, model pulled, and `WA_AI_ENABLED=1`.
+- Reconnect, iOS/Web, groups (disabled by default), older Game Packs.
 
-Data directories, `.env`, WhatsApp credential folders and local dependency folders are excluded from ZIP source updates. **Back up your `data/` folder separately** before running a patch; source rollback does **not** revert SQLite schema migrations or earned V-Currency. The exporter may not remove passwords hard-coded into source files; review ZIP contents before sharing.
+## QA status meanings
 
-No top-ups, withdrawals or exchange to real money. All 16 playable games are free. Reward cap: 100 V/day from game wins, plus independent daily and mission rewards; real-money payments are not implemented. Sessions persist in SQLite and expire after 15 minutes for challenge games.
+- `PASS`: automated suite passed, or operator reported a live success.
+- `FAIL`: automated suite failed, or operator reported live failure.
+- `PENDING_LIVE`: no human result for this release. This is NOT a bug, not PASS.
+- `WAJIB`: required before claiming live deployment verified.
+- `OPSIONAL`: can be postponed without preventing basic smoke-test acceptance.
+
+Do not send credentials, QR, stored sessions, or WhatsApp personal numbers for debugging. When sharing errors, redact sensitive identifiers.

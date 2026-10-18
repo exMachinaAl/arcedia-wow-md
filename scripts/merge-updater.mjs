@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** WA-WORLD offline patch installer v1: dependency-free; never runs code from patch. */
+/** WA-WORLD offline patch installer v3 (bootstrap-safe): dependency-free; never runs code from patch. */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, lstatSync, openSync, closeSync, renameSync, rmSync, readdirSync } from 'node:fs';
 import { resolve, dirname, relative, join, sep, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -144,13 +144,28 @@ function plan(project, patch) {
     const original = previous ? sha(previous) : null;
     let next = entries.get(REQUIRED_PREFIX + f.path);
     let decision = 'write';
+    const docSafe = f.action === 'replace' && (f.path === 'README.md' || f.path === 'CHANGELOG.md' || /^docs\/[a-zA-Z0-9_./-]+\.md$/.test(f.path));
+    let docBackup = false;
+    // The updater is a managed bootstrap file. Older official Rescue installers
+    // legitimately installed a different updater without bumping app semver.
+    // NEVER execute the installed updater; the installer kit runs its own code.
+    // Permit replacing ONLY this exact path after a full byte-for-byte backup.
+    const updaterBootstrap = f.action === 'replace' && f.path === 'scripts/merge-updater.mjs';
+    let updaterBackup = false;
     if (f.action === 'add' && previous) {
       if (original === f.sha256) decision = 'skip';
       else conflicts.push(`${f.path}: new file already exists with different contents`);
     } else if (f.action === 'replace') {
       if (!previous) conflicts.push(`${f.path}: source file is missing`);
       else if (original === f.sha256) decision = 'skip';
-      else if (original !== f.base_sha256) conflicts.push(`${f.path}: locally modified; refusing to overwrite`);
+      else if (original !== f.base_sha256 && docSafe) {
+        docBackup = true;
+        log(`DOC DIFFERENCE: ${f.path} will be backed up in .wa-world/backups/<backup-id>/original/ then updated to release version.`);
+      } else if (original !== f.base_sha256 && updaterBootstrap) {
+        updaterBackup = true;
+        log(`BOOTSTRAP DIFFERENCE: ${f.path} differs from version baseline.`);
+        log('The OLD installer will be backed up and replaced ONLY after user confirms with Enter.');
+      } else if (original !== f.base_sha256) conflicts.push(`${f.path}: locally modified; refusing to overwrite`);
     } else if (f.action === 'merge-tracker') {
       if (!previous) conflicts.push(`${f.path}: tracker missing`);
       else {
@@ -159,7 +174,7 @@ function plan(project, patch) {
         if (original === sha(next)) decision = 'skip';
       }
     }
-    if (decision !== 'skip') operations.push({ path:f.path, dst, original, newHash:sha(next), previous, next });
+    if (decision !== 'skip') operations.push({ path:f.path, dst, original, newHash:sha(next), previous, next, docBackup, updaterBackup });
   }
   if (conflicts.length) fail('Conflicts found (no files changed):\n - '+conflicts.join('\n - '));
   const targetPkg = operations.find(o => o.path === 'package.json');
@@ -191,7 +206,7 @@ function apply(project, zipPath) {
     const backupId = new Date().toISOString().replace(/[:.]/g,'-')+'-'+randomUUID().slice(0,8);
     const backDir = join(project,'.wa-world','backups',backupId);
     mkdirSync(backDir,{recursive:true});
-    const receipt = {backupId, before:info.version, after:patch.manifest.to_version, installedAt:new Date().toISOString(), files: operations.map(o=>({path:o.path,beforeHash:o.original,afterHash:o.newHash}))};
+    const receipt = {backupId, before:info.version, after:patch.manifest.to_version, installedAt:new Date().toISOString(), files: operations.map(o=>({path:o.path,beforeHash:o.original,afterHash:o.newHash,documentationBackup:!!o.docBackup,managedBootstrapBackup:!!o.updaterBackup}))};
     // Stage a complete backup before ANY project source change.
     for (const o of operations) if (o.previous !== null) {
       const p=join(backDir,'original', ...o.path.split('/'));
@@ -211,6 +226,8 @@ function apply(project, zipPath) {
     }
     log(`SUCCESS: ${info.version} -> ${patch.manifest.to_version}; ${operations.length} files updated.`);
     log(`Backup: .wa-world/backups/${backupId}`);
+    for (const o of operations.filter(o=>o.docBackup)) log(`RECOVER LOCAL DOC: .wa-world/backups/${backupId}/original/${o.path}`);
+    for (const o of operations.filter(o=>o.updaterBackup)) log(`RECOVER OLD UPDATER: .wa-world/backups/${backupId}/original/${o.path}`);
     log('Rollback command: node scripts/merge-updater.mjs rollback');
   } finally {unlock();}
 }

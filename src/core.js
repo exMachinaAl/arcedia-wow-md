@@ -1,12 +1,42 @@
+import {createAdminSettings} from './admin-settings.js';
+import {createWorldSocial} from './world-social.js';
+import {createWorldMarket} from './world-market.js';
+import {createWorldAdaptive} from './world-adaptive.js';
+import {createInventory} from './inventory.js';
+import {createWorldIntelligence} from './world-intelligence.js';
+import {createWorldCommunity} from './world-community.js';
+import {renderPlayerCard} from './world/player-card-png.js';
+import {createArcade} from './arcade.js';
+import {createWorldEconomy} from './world-economy.js';
+import {createWorldLifecycle} from './world-lifecycle.js';
+import {createPvpEconomy} from './pvp-economy.js';
+import {createChess} from './chess.js';
+import {createBlackjack} from './blackjack.js';
+import {createIntelligence} from './intelligence.js';
+import {createMultiplayer} from './multiplayer.js';
+import {handleExtension} from './developer/extensions.js';
 import { EXTRA_GAMES,makeExtraGameDispatcher } from './games/expansion.js';
+import {LOGIC_GAMES,makeLogicDispatcher} from './games/logic-pack.js';
+import {ADVENTURE_GAMES,makeAdventureDispatcher} from './games/adventure-pack.js';
+import {EXPLORER_GAMES,makeExplorerDispatcher} from './games/explorer-pack.js';
 import { inTransaction } from './db.js';
+import { makeSocialDispatcher } from './social.js';
 import { randomInt, createHash } from 'node:crypto';
 
 export const GAMES = [
   { id:'coin', name:'Lempar Koin', command:'.coin kepala', status:'playable' },
   { id:'rps', name:'Batu Gunting Kertas', command:'.rps batu', status:'playable' },
   { id:'guess', name:'Tebak Angka 1–10', command:'.guess start', status:'playable' },
-  ...EXTRA_GAMES
+  ...EXTRA_GAMES,
+  ...LOGIC_GAMES,
+  ...ADVENTURE_GAMES,
+  ...EXPLORER_GAMES,
+  {id:'snakes',name:'Ular Tangga PvP (beta)',command:'.arena',status:'playable'},
+  {id:'chess',name:'Catur PvP Ranked (beta)',command:'.chess',status:'playable'},
+  {id:'blackjack',name:'Blackjack Social (non-taruhan)',command:'.bj help',status:'playable'},
+  {id:'gacha',name:'Gacha Kosmetik Gratis',command:'.gacha claim',status:'playable'},
+  {id:'symbolmatch',name:'Symbol Match 10 Simbol',command:'.slot spin',status:'playable'},
+  {id:'riskroom',name:'Risk Rooms Kooperatif',command:'.risk help',status:'playable'}
 ];
 const GAME_DAILY_CAP=100;
 const jakartaDay = now => new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(now));
@@ -55,24 +85,95 @@ export function createCore(db, options={}) {
     }
     return issued;
   }
+  const admin=createAdminSettings({db,adminIds:options.adminIds??process.env.WOW_ADMIN_IDS??''});
+  const worldIntelligence=createWorldIntelligence({db,credit:reward});
+  const inventory=createInventory({db});
+  const community=createWorldCommunity({db});
+  const dailyMarket=createWorldMarket({db,auctionEnabled:options.auctionEnabled===true,isAuctionEnabled:()=>admin.get('auction')===1||options.auctionEnabled===true,settings:admin});
+  const adaptive=createWorldAdaptive({db});
+  const worldSocial=createWorldSocial({db,community});
+  const world=createWorldEconomy({db,credit:reward});
+  const arcade=createArcade({db,randomInt:draw,grantBound:world.grantBound,...(options.arcadeCodeGenerator?{codeGenerator:options.arcadeCodeGenerator}:{})});
+  const social=makeSocialDispatcher({db,profile});
+  const lifecycle=createWorldLifecycle({db,randomInt:draw,settings:admin,...(options.arcadeCodeGenerator?{codeGenerator:options.arcadeCodeGenerator}:{})});
+  const pvp=createPvpEconomy({db});
+  const multiplayer=createMultiplayer({db,draw,pvp});
+  const intelligence=createIntelligence({db});
+  const chess=createChess({db,intelligence,pvp});
+  const blackjack=createBlackjack({db,pvp});
   const extraGame=makeExtraGameDispatcher({db,draw,play,reward});
-  function dispatch(senderId,eventKey,text,now) {
+  const logicGame=makeLogicDispatcher({db,draw,play,reward});
+  const adventureGame=makeAdventureDispatcher({db,draw,play,reward});
+  const explorerGame=makeExplorerDispatcher({db,draw,play,reward});
+  function dispatch(senderId,eventKey,text,now,context={}) {
     const parts=text.trim().toLowerCase().split(/\s+/);
     const cmd=parts[0],args=parts.slice(1);
+    const control=admin.command(senderId,eventKey,text,now,context);
+    if(control!==null)return control;
+    const socialWorldResponse=worldSocial.dispatch(senderId,eventKey,text,now,context);
+    if(socialWorldResponse!==null)return socialWorldResponse;
+    const adaptiveResponse=adaptive.dispatch(senderId,eventKey,text,now);
+    if(adaptiveResponse!==null)return adaptiveResponse;
+    const marketResponse=dailyMarket.dispatch(senderId,eventKey,text,now);
+    if(marketResponse!==null)return marketResponse;
+    const communityResponse=community.dispatch(senderId,eventKey,text,now);
+    if(communityResponse!==null)return communityResponse;
+    const intelligent=worldIntelligence.dispatch(senderId,eventKey,text,now);
+    if(intelligent!==null)return intelligent;
+    // WOW v1.9 economy & strict no-transfer rules run before legacy modules.
+    const lifeResponse=lifecycle.dispatch(senderId,eventKey,text,now);
+    if(lifeResponse!==null)return lifeResponse;
+    const pvpResponse=pvp.dispatch(senderId,text);
+    if(pvpResponse!==null)return pvpResponse;
+    const worldResponse=world.dispatch(senderId,eventKey,text,now);
+    if(worldResponse!==null)return worldResponse;
+    const arcadeResponse=arcade.dispatch(senderId,eventKey,text,now);
+    if(arcadeResponse!==null)return arcadeResponse;
+    const items=inventory.dispatch(senderId,eventKey,text,now);
+    if(items!==null)return items;
+    const bj=blackjack.perform(senderId,text,now,context);
+    if(bj!==null)return bj;
+    const ch=chess.perform(senderId,text,now);
+    if(ch!==null)return ch;
+    const mp=multiplayer.perform(senderId,text,now);
+    if(mp!==null)return mp;
+    if(cmd==='.nav'){
+      const page=args[0];
+      if(page==='more')return '📂 FITUR LAINNYA\n🎁 Daily • 👤 Profil • ➡️ Jelajah\nKetik .nav explore untuk game packs, AI, dan sosial.\nKembali: .menu';
+      if(page==='explore')return '🌎 JELAJAH WA-WORLD\n🕹️ Game Packs • 🤖 AI Lokal • 🌐 Social\nArena: .nav arena | .pvp (mode) | Beranda: .menu';
+      if(page==='fun')return '🌟 WORLD, ARCADE & SOSIAL\n🌍 WOW Economy: .wow | Mining: .mine | Simulasi Bursa: .market\n🎰 Arcade: .arcade | .gacha | .slot\n🤝 Multiplayer: .risk help | .social\n🎒 .inventory | Kembali: .menu';
+      if(page==='arena')return '⚔️ ARENA MULTIPLAYER\n♟️ Catur (.chess) • 🎲 Ular Tangga (.arena) • 🃏 Blackjack (.bj)\nCatur lobby: .chess lobby\nBeranda: .menu';
+      return 'Gunakan .nav more | .nav explore | .nav arena';
+    }
     if(cmd==='.ping')return 'PONG · WA-WORLD online.';
-    if(['.menu','.help','.start'].includes(cmd))return `🌍 WA-WORLD v0.5.0\n.menu — beranda interaktif\n.games — daftar game utama\n.packs — tombol game tambahan\n.missions — misi harian\n.daily — hadiah harian (WIB)\n.profile — XP, level & statistik\n.rank — leaderboard opt-in\n.nick NAMA — atur nickname\n.wallet — saldo V-Currency\n.missions — misi harian\n.badges — pencapaian\n.coin kepala|ekor — lempar koin\n.rps batu|gunting|kertas — suit\n.guess start / .guess ANGKA — tebak angka\n.buttons native — uji tombol\n.games — semua ${GAMES.length} game\n.ai — AI (belum aktif)`;
-    if(cmd==='.games'||cmd==='.play')return `🎮 ${GAMES.length}/100 game playable:\n${GAMES.map(g=>`${g.name}: ${g.command}`).join('\n')}\n\nMain gratis; hadiah game maksimal ${GAME_DAILY_CAP} V/hari (WIB).`;
-    if(cmd==='.packs')return '🧩 Game packs: .pack lucky | .pack brain | .pack word. Game lainnya lihat .games.';
+    const insight=intelligence.perform(senderId,text);
+    if(insight!==null)return insight;
+    if(['.menu','.help','.start'].includes(cmd))return `🌍 WA-WORLD v2.4.1 — WORLD OF WA\n.world event — event dunia harian\n.world quest — ekspedisi V harian\n.stats card — kartu profil PNG\n.stats world — statistik server\n.smart on — rekomendasi personal (opt-in)\n.wow — simulasi kehidupan, mining, bursa fiktif\n.guild — guild, kas dan misi\n.guildgroup — guild dalam grup WA\n.worldpulse — statistik dunia kemarin\n.reputation — prestasi dunia\n.season — misi musim WOW\n.guildshop — guild supply dari kas\n.dailyshop — toko harian V\n.auction — lelang material (default OFF)\n.admin show — pengaturan khusus admin (DM)\n.whoami — lihat ID untuk registrasi admin\n.property — rumah, workshop dan tambang pribadi\n.wow economy — V shop, crafting, karier\n.arcade v — permainan V virtual non-tunai (opt-in)\n.menu — beranda interaktif\n.games — daftar game utama\n.packs / .packs2 / .packs3 / .packs4 — Game Packs\n.arcade — Gacha gratis + Symbol Match + Risk Rooms\n.missions — misi harian\n.daily — hadiah harian (WIB)\n.profile — XP, level & statistik\n.rank — leaderboard opt-in\n.nick NAMA — atur nickname\n.wallet — saldo V-Currency\n.inventory — koleksi & equipment\n.item help — fitur item\n.missions — misi harian\n.badges — pencapaian\n.coin kepala|ekor — lempar koin\n.rps batu|gunting|kertas — suit\n.guess start / .guess ANGKA — tebak angka\n.buttons native — uji tombol\n.games all — daftar lengkap ${GAMES.length} game\n.social — Teman & duel (.pay legacy OFF; .transfer perlu izin admin)\n.ai — AI lokal opsional (.ai help)\n.arena — matchmaking Ular Tangga PvP\n.chess — catur PvP ranked/casual (beta)\n.pvp — mode Ranked/Casual & reward V\n.insights — statistik pribadi\n.model status — model ML/Elo`;
+    if(cmd==='.games' && args[0]!=='all')return `🎮 ${GAMES.length}/100 game playable.\nPilih .packs | .packs2 | .packs3 | .packs4 untuk panel permainan.\nKetik .games all untuk daftar lengkap.\nReward game maksimal ${GAME_DAILY_CAP} V/hari (WIB).`;
+    if((cmd==='.games'&&args[0]==='all')||cmd==='.play'||cmd==='.gamelist')return `🎮 ${GAMES.length}/100 game playable:\n${GAMES.map(g=>`${g.name}: ${g.command}`).join('\n')}\n\nMain gratis; reward maksimal ${GAME_DAILY_CAP} V/hari (WIB).`;
+    if(cmd==='.packs')return '🧩 Game Packs halaman 1: .pack lucky | .pack brain | .packs2 (lanjut). Gunakan .pack word | .pack numbers | .pack logic untuk lainnya.';
+    if(cmd==='.packs2')return '🧩 Game Packs halaman 2: .pack word | .pack numbers | .pack logic. Berikut: .packs3';
+    if(cmd==='.packs3')return '🧩 Game Pack 03: .pack puzzles | .pack words3. Berikut: .packs4';
+    if(cmd==='.packs4')return '🧭 Game Pack 04: .pack exploration | .pack data4. Semua game: .games all';
+    if(cmd==='.world')return `🌍 WA-WORLD v2.0.0\n🌍 .wow — virtual life & V-Currency\n🎮 ${GAMES.length}/100 permainan siap dimainkan\n🤝 Social Hub, duel gratis, V-Currency tanpa top-up\n♟️ Catur PvP ranked (beta)\n⚔️ .pvp — Mode Ranked/Casual, reward V\n📊 .insights / .model status — statistik PvP & ML\n🃏 Blackjack gratis: .bj help\n🤖 AI lokal opsional\n🌦️ Event dunia: .world event / .world quest\n📊 Stats: .stats card / .stats world\n🧠 Smart: .smart on | .smart recommend\n🛡️ QA per versi; perangkat WhatsApp memerlukan tes langsung.\n.packs4 | .social | .ai help`; 
     if(cmd==='.pack') {
       if(args[0]==='lucky')return '🎲 Lucky Pack: .dice 4 / .parity genap / .highlow naik';
       if(args[0]==='brain')return '🧠 Brain Pack: .math start / .trivia start / .pattern start';
       if(args[0]==='word')return '🔤 Word Pack: .scramble start / .hangman start / .chain start';
-      return 'Pilih .pack lucky | brain | word';
+      if(args[0]==='numbers')return '🔢 Number Pack: .binary start / .roman start / .digit start / .sort start';
+      if(args[0]==='puzzles')return '🎯 Puzzle Pack 03: .factorial start / .gcd start / .lcm start / .discount start / .operator start / .quadrant start / .clock start / .fraction start';
+      if(args[0]==='words3')return '🔤 Word Pack 03: .morse start / .palindrome start / .vowels start / .reverse start';
+      if(args[0]==='exploration')return '🗺️ Explorer Pack: .primefactors start / .manhattan start / .perimeter start / .triangle start / .chance start / .utcwib start';
+      if(args[0]==='data4')return '🧭 Data & Cipher Pack: .median start / .mode start / .divisible start / .caesar start / .a1z26 start / .setunion start';
+      if(args[0]==='logic')return '🧠 Logic Pack: .equation start / .prime start / .logic start / .alphabet start';
+      return 'Pilih .pack lucky | brain | word | numbers | logic | puzzles | words3 | exploration | data4';
     }
-    if(cmd==='.wallet')return `💰 Saldo: ${profile(senderId).balance} V-Currency\nTidak ada top-up, cash-out, atau tukar uang nyata.`;
+    const extResponse=handleExtension(text);
+    if(extResponse!==null)return extResponse;
+    if(cmd==='.wallet')return `💰 Saldo: ${profile(senderId).balance} V-Currency\nV dapat dipakai di .vshop, .craft, dan .arcade v (opt-in).\nTransfer V hanya melalui .transfer bila diaktifkan admin; TOP-UP, CASH-OUT dan uang nyata DILARANG.`;
     if(cmd==='.profile'){
       const p=profile(senderId);
-      return `👤 ${p.nickname||pseudonym(senderId)}\nTier: ${p.tier}\nLevel: ${level(p.xp)} · XP: ${p.xp}\nDimainkan: ${p.plays} · Menang berhadiah: ${p.wins}\nSaldo: ${p.balance} V-Currency\nLeaderboard: ${p.ranked?'IKUT':'PRIVAT'}\nBergabung: ${p.created_at}`;
+      return `👤 ${p.nickname||pseudonym(senderId)}\nTier: ${p.tier}\nLevel: ${level(p.xp)} · XP: ${p.xp}\nDimainkan: ${p.plays} · Menang berhadiah: ${p.wins}\nSaldo: ${p.balance} V-Currency\nEquipment: ${inventory.equipment(senderId)}\nLeaderboard: ${p.ranked?'IKUT':'PRIVAT'}\nBergabung: ${p.created_at}`;
     }
     if(cmd==='.nick'){
       const name=text.trim().split(/\s+/).slice(1).join(' ');
@@ -107,7 +208,7 @@ export function createCore(db, options={}) {
       addXP(senderId,5);
       return `🎁 Daily berhasil! +${amount} V-Currency dan +5 XP. Streak ${streak} hari. Reset 00:00 WIB.`;
     }
-    if(cmd==='.status')return 'WA-WORLD v0.5.0 · 16 game playable; QA offline + live flags · AI LLM belum aktif.';
+    if(cmd==='.status')return `WA-WORLD v2.3.0 · ${GAMES.length} game + Social Hub; AI lokal opsional · QA offline + live flags.`;
     if(cmd==='.badges'){
       const p=profile(senderId);
       const days=db.prepare('SELECT count(*) AS n FROM daily_claims WHERE user_id=?').get(senderId).n;
@@ -131,7 +232,9 @@ export function createCore(db, options={}) {
       }
       return `📜 Misi harian (WIB)\n${entries.map(m=>`${m[1]} (${m[2]}/${m[3]}) · ${m[4]} V · .mission claim ${m[0]}`).join('\n')}\nHadiah misi di luar cap game.`;
     }
-    if(cmd==='.ai')return 'AI LLM/ML self-hosted masih dalam backlog, belum aktif.';
+    const soc=social(senderId,eventKey,text,now);
+    if(soc!==null)return soc;
+    if(cmd==='.ai')return '🤖 AI lokal: jalankan gateway dan ketik .ai help. Memerlukan Ollama yang diaktifkan secara terpisah. ML khusus masih dalam backlog.';
     if(cmd==='.coin'){
       if(!['kepala','ekor'].includes(args[0]))return 'Gunakan .coin kepala atau .coin ekor';
       const actual=draw(0,2)===0?'kepala':'ekor',win=args[0]===actual;
@@ -172,9 +275,23 @@ export function createCore(db, options={}) {
     }
     const expanded=extraGame(senderId,eventKey,text,now);
     if(expanded!==null)return expanded;
+    const logic=logicGame(senderId,eventKey,text,now);
+    if(logic!==null)return logic;
+    const adventure=adventureGame(senderId,eventKey,text,now);
+    if(adventure!==null)return adventure;
+    const explorer=explorerGame(senderId,eventKey,text,now);
+    if(explorer!==null)return explorer;
     return 'Perintah tidak dikenal. Ketik .menu';
   }
-  return {profile,process({senderId,eventKey,text,now=Date.now()}){
+  return {profile,getWorldSocialStats:()=>worldSocial.stats(),getWorldMarketStats:()=>dailyMarket.stats(),getWorldAdaptiveStats:()=>adaptive.stats(),sweepAuctions:({now=Date.now(),limit=30}={})=>inTransaction(db,()=>dailyMarket.sweep(now,limit)),getWorldIntelligenceStats:()=>worldIntelligence.worldStats(),getCommunityStats:()=>community.stats(),getPlayerCard:({senderId})=>worldIntelligence.card(senderId),getPlayerCardImage:({senderId})=>{const stats=worldIntelligence.playerStats(senderId);const rep=worldSocial.reputation(senderId);return stats?{png:renderPlayerCard({...stats,reputation:rep.score,reputationTier:rep.tier}),caption:worldIntelligence.card(senderId)+`\n🌟 World Reputation: ${rep.score} (${rep.tier})`}:null;},getLifecycleStats:()=>lifecycle.stats(),getPvpStats:()=>pvp.stats(),getWorldStats:()=>world.stats(),getArcadeStats:()=>arcade.stats(),getInventoryStats:()=>inventory.stats(),getBlackjackStats:()=>blackjack.stats(),getBlackjackContext:({senderId})=>blackjack.context(senderId),getBlackjackImage:({senderId})=>blackjack.image(senderId),
+    claimBlackjackNotifications:({now=Date.now(),limit=12}={})=>inTransaction(db,()=>blackjack.notices(now,limit)),
+    ackBlackjackNotification:(id,now=Date.now())=>blackjack.ack(id,now),
+    failBlackjackNotification:(id,error,now=Date.now())=>blackjack.fail(id,error,now),
+    getInsights:()=>intelligence.global(),getChessContext:({senderId})=>chess.context(senderId),
+    claimChessNotifications:({now=Date.now(),limit=12}={})=>inTransaction(db,()=>chess.claimNotifications(now,limit)),
+    ackChessNotification:(id,now=Date.now())=>chess.ackNotification(id,now),
+    failChessNotification:(id,error,now=Date.now())=>chess.failNotification(id,error,now),
+    getChessBoard:({senderId,matchId})=>chess.getBoard(senderId,matchId),getChessStats:()=>chess.stats(),getMatchBoard:({senderId,matchId})=>multiplayer.getBoard(senderId,matchId),getMultiplayerStats:()=>multiplayer.stats(),process({senderId,eventKey,text,now=Date.now(),context={}}){
     if(typeof senderId!=='string'||senderId.length>180||senderId.length<1)throw Error('Invalid sender');
     if(typeof eventKey!=='string'||eventKey.length>350||eventKey.length<1)throw Error('Invalid event key');
     if(typeof text!=='string'||text.length>300)return 'Pesan terlalu panjang atau tidak valid.';
@@ -182,7 +299,8 @@ export function createCore(db, options={}) {
       const previous=db.prepare('SELECT response FROM processed_messages WHERE event_key=?').get(eventKey);
       if(previous)return previous.response;
       ensureUser(senderId);
-      const response=dispatch(senderId,eventKey,text,now);
+      const response=dispatch(senderId,eventKey,text,now,context);
+      worldIntelligence.track(senderId,eventKey,text,now);
       db.prepare('INSERT INTO processed_messages(event_key,sender_id,response) VALUES(?,?,?)').run(eventKey,senderId,response);
       return response;
     });
